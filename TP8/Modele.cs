@@ -125,6 +125,11 @@ namespace TP8
             return Rayon;
         }
 
+        internal void setRayon(int value)
+        {
+            Rayon = value;
+        }
+
         public override bool ContientPoint(Point p)
         {
             int dx = p.X - this.Position.X;
@@ -157,6 +162,7 @@ namespace TP8
             Couleur = newCouleur;
         }
 
+        
     }
 
     public class Droite : FormeGeo

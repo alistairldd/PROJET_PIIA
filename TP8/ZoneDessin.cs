@@ -94,7 +94,7 @@ namespace TP8
                 if (f is Rectangle r)
                     e.Graphics.DrawRectangle(pen, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
                 else if (f is Disque d)
-                    e.Graphics.DrawEllipse(pen, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
+                    e.Graphics.DrawEllipse(pen, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
             }
 
 
@@ -298,7 +298,7 @@ namespace TP8
                     }
                     else if (f is Disque d)
                     {
-                        var boundsD = new System.Drawing.Rectangle(d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
+                        var boundsD = new System.Drawing.Rectangle(d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
                         if (selectionRect.IntersectsWith(boundsD))
                             selection.Add(f);
                     }
@@ -314,10 +314,10 @@ namespace TP8
                     }
                     else if (f is Dessin dessin)
                     {
-                        int x = dessin.Points.Min(p => p.X);
-                        int y = dessin.Points.Min(p => p.Y);
-                        int w = dessin.Points.Max(p => p.X) - x;
-                        int h = dessin.Points.Max(p => p.Y) - y;
+                        int x = dessin.getPoints().Min(p => p.X);
+                        int y = dessin.getPoints().Min(p => p.Y);
+                        int w = dessin.getPoints().Max(p => p.X) - x;
+                        int h = dessin.getPoints().Max(p => p.Y) - y;
                         var boundsDes = new System.Drawing.Rectangle(x, y, Math.Max(w, 1), Math.Max(h, 1));
                         if (selectionRect.IntersectsWith(boundsDes))
                             selection.Add(f);
@@ -424,7 +424,7 @@ namespace TP8
                 else if (formeRedimensionnee is Disque d)
                 {
                     // Pour le disque on ajuste juste le rayon
-                    d.Rayon = Math.Max(5, d.Rayon + Math.Max(Math.Abs(deltaX), Math.Abs(deltaY)) * (deltaX + deltaY > 0 ? 1 : -1));
+                    d.setRayon( Math.Max(5, d.getRayon() + Math.Max(Math.Abs(deltaX), Math.Abs(deltaY)) * (deltaX + deltaY > 0 ? 1 : -1)));
                 }
                 else if (formeRedimensionnee is Droite dr)
                 {
@@ -482,8 +482,8 @@ namespace TP8
                     }
                     else if (f is Dessin dessin)
                     {
-                        for (int i = 0; i < dessin.Points.Count; i++)
-                            dessin.Points[i] = new Point(dessin.Points[i].X + deltaX, dessin.Points[i].Y + deltaY);
+                        for (int i = 0; i < dessin.getPoints().Count; i++)
+                            dessin.getPoints()[i] = new Point(dessin.getPoints()[i].X + deltaX, dessin.getPoints()[i].Y + deltaY);
                     }
                     else
                     {
@@ -516,7 +516,7 @@ namespace TP8
             }
             else if (f is Disque d)
             {
-                int cx = d.Position.X, cy = d.Position.Y, r2 = d.Rayon;
+                int cx = d.Position.X, cy = d.Position.Y, r2 = d.getRayon();
                 return new[]
                 {
             new System.Drawing.Rectangle(cx - s/2,      cy - r2 - s/2, s, s), // 0 haut

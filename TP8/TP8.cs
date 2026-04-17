@@ -67,7 +67,7 @@ namespace TP8
 
         private void button9_Click(object sender, EventArgs e) // jaune truc
         {
-            zoneDessin.Couleur = Color.FromArgb(192,192,0);
+            zoneDessin.Couleur = Color.FromArgb(192, 192, 0);
 
         }
 
@@ -88,11 +88,9 @@ namespace TP8
             zoneDessin.Couleur = Color.White;
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void button13_Click(object sender, EventArgs e)
         {
-        
             modele.setAction(Action.selectionner);
-        
         }
     }
 }

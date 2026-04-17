@@ -41,6 +41,7 @@
             button10 = new Button();
             button7 = new Button();
             button6 = new Button();
+            button13 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -179,11 +180,22 @@
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
+            // button13
+            // 
+            button13.Location = new Point(21, 41);
+            button13.Name = "button13";
+            button13.Size = new Size(75, 23);
+            button13.TabIndex = 6;
+            button13.Text = "Selection";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
+            // 
             // TP8
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button13);
             Controls.Add(panel1);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -211,5 +223,6 @@
         private Button button12;
         private Button button9;
         private Button button10;
+        private Button button13;
     }
 }
