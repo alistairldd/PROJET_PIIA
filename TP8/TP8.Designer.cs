@@ -33,6 +33,7 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
+            button6 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -85,29 +86,27 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
-            //
-            //button6
-            //
-            button6 = new Button();
-            button6.Location = new Point(174, 41);
-            button6.Name = "button4";
-            button6.Size = new Size(80, 23);
-            button6.TabIndex = 3;
-            button6.Text = "Sélectionner";
+            // button6
+            // 
+            button6.Location = new Point(102, 12);
+            button6.Name = "button6";
+            button6.Size = new Size(75, 23);
+            button6.TabIndex = 5;
+            button6.Text = "Selection";
             button6.UseVisualStyleBackColor = true;
-            button6.Click += button4_Click;
+            button6.Click += button6_Click;
             // 
             // TP8
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(button6);
             Name = "TP8";
             Text = "Form1";
             ResumeLayout(false);

@@ -1,9 +1,11 @@
 ﻿public enum Action
 {
+
+    deplacer,
     dessiner,
     creerRectangle,
     creerDisque,
     creerDroite,
-    deplacer,
-    selectionner
+    selectionner,
+    creerTexte
 }

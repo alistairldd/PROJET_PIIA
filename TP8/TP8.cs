@@ -49,9 +49,9 @@ namespace TP8
 
         private void button6_Click(object sender, EventArgs e)
         {
+        
             modele.setAction(Action.selectionner);
+        
         }
-
-
     }
 }
