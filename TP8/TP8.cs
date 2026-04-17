@@ -17,6 +17,8 @@ namespace TP8
             modele.ajouterForme(new Rectangle(new Point(50, 50), 100, 50));
 
             modele.ajouterForme(new Disque(new Point(200, 100), 40));
+
+            modele.ajouterForme(new Droite(new Point(300, 50), new Point(350, 150)));
         }
 
 
@@ -36,6 +38,16 @@ namespace TP8
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+            modele.setAction(Action.creerDroite);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            modele.setAction(Action.dessiner);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
         {
             modele.setAction(Action.selectionner);
         }

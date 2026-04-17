@@ -19,6 +19,8 @@ namespace TP8
         private bool isDraggingSelection = false;
         private Rectangle? rectPreview;
         private Disque? disquePreview;
+        private Droite? droitePreview;
+        private Dessin? polylignePreview;
 
         private System.Drawing.Rectangle selectionRect; // rectangle de sélection visuel
         private bool isSelecting = false;               // on est en train de dessiner la sélection
@@ -50,6 +52,20 @@ namespace TP8
                     Disque disque = (Disque)forme;
                     e.Graphics.FillEllipse(Brushes.Red, disque.Position.X - disque.Rayon, disque.Position.Y - disque.Rayon, disque.Rayon * 2, disque.Rayon * 2);
                 }
+                else if (forme is Droite)
+                {
+                    Droite droite = (Droite)forme;
+                    e.Graphics.DrawLine(Pens.Green, droite.PointDebut, droite.PointFin);
+                }
+                else if (forme is Dessin)
+                {
+                    Dessin dessin = (Dessin)forme;
+                    var pts = dessin.Points.ToArray();
+                    if (pts.Length > 1)
+                        e.Graphics.DrawLines(Pens.Purple, pts);
+                }
+            }
+        }
             }
 
             // Surligner les formes sélectionnées
@@ -86,6 +102,20 @@ namespace TP8
                 e.Graphics.DrawEllipse(border, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
             }
 
+            if (droitePreview is not null)
+            {
+                using var pen = new Pen(Color.FromArgb(180, Color.DarkGreen), 2);
+                var dr = droitePreview;
+                e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
+            }
+
+            if (polylignePreview != null)
+            {
+                var pts = polylignePreview.Points.ToArray();
+                if (pts.Length > 1)
+                    e.Graphics.DrawLines(Pens.Purple, pts);
+            }
+
             if (isSelecting && selectionRect.Width > 0 && selectionRect.Height > 0)
             {
                 using var pen = new Pen(Color.DodgerBlue, 1);
@@ -106,6 +136,7 @@ namespace TP8
                 isDragging = true;
                 rectPreview = null;
                 disquePreview = null;
+                droitePreview = null;
             }
             else if (action == Action.creerDisque)
             {
@@ -113,7 +144,23 @@ namespace TP8
                 isDragging = true;
                 rectPreview = null;
                 disquePreview = null;
+                droitePreview = null;
             }
+            else if (action == Action.creerDroite)
+            {
+                positionInitiale = e.Location;
+                isDragging = true;
+                rectPreview = null;
+                disquePreview = null;
+                droitePreview = null;
+            }
+            else if (action == Action.dessiner)
+            {
+                polylignePreview = new Dessin(e.Location);
+                isDragging = true;
+                Invalidate();
+            }
+
             else if (action == Action.deplacer)
             {
                 bool clicSurSelection = modele.getFormesSelectionnees()
@@ -150,6 +197,17 @@ namespace TP8
             }
             
         }
+                for (int i = 0; i < modele.getNombreFormes(); i++)
+                {
+                    if (modele.getFormeId(i).ContientPoint(e.Location))
+                    { 
+                        formeSelection = modele.getFormeId(i);
+                        lastMousePosition = e.Location;
+                        break;
+                    }
+                }
+            }
+        }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
@@ -166,6 +224,18 @@ namespace TP8
             if (isDragging && action == Action.creerDisque && disquePreview is not null)
             {
                 modele.ajouterForme(disquePreview);
+            }
+
+            if (isDragging && action == Action.creerDroite && droitePreview is not null)
+            {
+
+                modele.ajouterForme(droitePreview);
+            }
+
+            if (isDragging && action == Action.dessiner && polylignePreview is not null)
+            {
+                modele.ajouterForme(polylignePreview);
+
             }
 
             if (isSelecting && action == Action.selectionner)
@@ -201,11 +271,10 @@ namespace TP8
             isDraggingSelection = false;
             rectPreview = null;
             disquePreview = null;
+            droitePreview = null;
+            polylignePreview = null;
             formeSelection = null;
             Invalidate();
-
-
-
 
         }
         protected override void OnMouseMove(MouseEventArgs e)
@@ -241,6 +310,22 @@ namespace TP8
                 return;
             }
 
+            if (isDragging && action == Action.creerDroite)
+            {
+                droitePreview = new Droite(positionInitiale, e.Location);
+                Invalidate();
+                return;
+            }
+
+            if (isDragging && action == Action.dessiner)
+            {
+                if (polylignePreview != null)
+                {
+                    polylignePreview.AjouterPoint(e.Location);
+                    Invalidate();
+                }
+            }
+
             if (isSelecting && action == Action.selectionner)
             {
                 int x = Math.Min(positionInitiale.X, e.X);
@@ -257,8 +342,27 @@ namespace TP8
             {
                 int deltaX = e.X - lastMousePosition.X;
                 int deltaY = e.Y - lastMousePosition.Y;
-                formeSelection.X += deltaX;
-                formeSelection.Y += deltaY;
+
+                if (formeSelection is Droite droite)
+                {
+                    droite.PointDebut = new Point(droite.PointDebut.X + deltaX, droite.PointDebut.Y + deltaY);
+                    droite.PointFin = new Point(droite.PointFin.X + deltaX, droite.PointFin.Y + deltaY);
+                }
+
+                if (formeSelection is Dessin dessin)
+                {
+                    for (int i = 0; i < dessin.Points.Count; i++)
+                    {
+                        dessin.Points[i] = new Point(dessin.Points[i].X + deltaX, dessin.Points[i].Y + deltaY);
+                    }
+                }
+
+                else
+                {
+                    formeSelection.X += deltaX;
+                    formeSelection.Y += deltaY;
+                }
+
                 lastMousePosition = e.Location;
                 this.Invalidate();
             }
