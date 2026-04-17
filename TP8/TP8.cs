@@ -87,5 +87,12 @@ namespace TP8
         {
             zoneDessin.Couleur = Color.White;
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+        
+            modele.setAction(Action.selectionner);
+        
+        }
     }
 }
