@@ -18,7 +18,8 @@ namespace TP8
         private bool isDragging;
         private Rectangle? rectPreview;
         private Disque? disquePreview;
-
+        private Droite? droitePreview;
+        private Dessin? polylignePreview;
 
         public ZoneDessin(Modele modele)
         {
@@ -45,6 +46,18 @@ namespace TP8
                     Disque disque = (Disque)forme;
                     e.Graphics.FillEllipse(Brushes.Red, disque.Position.X - disque.Rayon, disque.Position.Y - disque.Rayon, disque.Rayon * 2, disque.Rayon * 2);
                 }
+                else if (forme is Droite)
+                {
+                    Droite droite = (Droite)forme;
+                    e.Graphics.DrawLine(Pens.Green, droite.PointDebut, droite.PointFin);
+                }
+                else if (forme is Dessin)
+                {
+                    Dessin dessin = (Dessin)forme;
+                    var pts = dessin.Points.ToArray();
+                    if (pts.Length > 1)
+                        e.Graphics.DrawLines(Pens.Purple, pts);
+                }
             }
         }
 
@@ -69,6 +82,20 @@ namespace TP8
                 e.Graphics.FillEllipse(fill, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
                 e.Graphics.DrawEllipse(border, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
             }
+
+            if (droitePreview is not null)
+            {
+                using var pen = new Pen(Color.FromArgb(180, Color.DarkGreen), 2);
+                var dr = droitePreview;
+                e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
+            }
+
+            if (polylignePreview != null)
+            {
+                var pts = polylignePreview.Points.ToArray();
+                if (pts.Length > 1)
+                    e.Graphics.DrawLines(Pens.Purple, pts);
+            }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -81,6 +108,7 @@ namespace TP8
                 isDragging = true;
                 rectPreview = null;
                 disquePreview = null;
+                droitePreview = null;
             }
             else if (action == Action.creerDisque)
             {
@@ -88,13 +116,29 @@ namespace TP8
                 isDragging = true;
                 rectPreview = null;
                 disquePreview = null;
+                droitePreview = null;
             }
+            else if (action == Action.creerDroite)
+            {
+                positionInitiale = e.Location;
+                isDragging = true;
+                rectPreview = null;
+                disquePreview = null;
+                droitePreview = null;
+            }
+            else if (action == Action.dessiner)
+            {
+                polylignePreview = new Dessin(e.Location);
+                isDragging = true;
+                Invalidate();
+            }
+
             else if (action == Action.deplacer)
             {
                 for (int i = 0; i < modele.getNombreFormes(); i++)
                 {
                     if (modele.getFormeId(i).ContientPoint(e.Location))
-                    {
+                    { 
                         formeSelection = modele.getFormeId(i);
                         lastMousePosition = e.Location;
                         break;
@@ -120,14 +164,25 @@ namespace TP8
                 modele.ajouterForme(disquePreview);
             }
 
+            if (isDragging && action == Action.creerDroite && droitePreview is not null)
+            {
+
+                modele.ajouterForme(droitePreview);
+            }
+
+            if (isDragging && action == Action.dessiner && polylignePreview is not null)
+            {
+                modele.ajouterForme(polylignePreview);
+
+            }
+
             isDragging = false;
             rectPreview = null;
             disquePreview = null;
+            droitePreview = null;
+            polylignePreview = null;
             formeSelection = null;
             Invalidate();
-
-
-
 
         }
         protected override void OnMouseMove(MouseEventArgs e)
@@ -163,13 +218,47 @@ namespace TP8
                 return;
             }
 
-            // calcul des dimensions (déplacement)
+            if (isDragging && action == Action.creerDroite)
+            {
+                droitePreview = new Droite(positionInitiale, e.Location);
+                Invalidate();
+                return;
+            }
+
+            if (isDragging && action == Action.dessiner)
+            {
+                if (polylignePreview != null)
+                {
+                    polylignePreview.AjouterPoint(e.Location);
+                    Invalidate();
+                }
+            }
+
             if (formeSelection != null)
             {
                 int deltaX = e.X - lastMousePosition.X;
                 int deltaY = e.Y - lastMousePosition.Y;
-                formeSelection.X += deltaX;
-                formeSelection.Y += deltaY;
+
+                if (formeSelection is Droite droite)
+                {
+                    droite.PointDebut = new Point(droite.PointDebut.X + deltaX, droite.PointDebut.Y + deltaY);
+                    droite.PointFin = new Point(droite.PointFin.X + deltaX, droite.PointFin.Y + deltaY);
+                }
+
+                if (formeSelection is Dessin dessin)
+                {
+                    for (int i = 0; i < dessin.Points.Count; i++)
+                    {
+                        dessin.Points[i] = new Point(dessin.Points[i].X + deltaX, dessin.Points[i].Y + deltaY);
+                    }
+                }
+
+                else
+                {
+                    formeSelection.X += deltaX;
+                    formeSelection.Y += deltaY;
+                }
+
                 lastMousePosition = e.Location;
                 this.Invalidate();
             }
