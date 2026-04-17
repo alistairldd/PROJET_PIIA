@@ -16,8 +16,13 @@ namespace TP8
         Point positionInitiale;
 
         private bool isDragging;
+        private bool isDraggingSelection = false;
         private Rectangle? rectPreview;
         private Disque? disquePreview;
+
+        private System.Drawing.Rectangle selectionRect; // rectangle de sélection visuel
+        private bool isSelecting = false;               // on est en train de dessiner la sélection
+        private List<FormeGeo> formesSelectionnees = new List<FormeGeo>();
 
 
         public ZoneDessin(Modele modele)
@@ -46,6 +51,17 @@ namespace TP8
                     e.Graphics.FillEllipse(Brushes.Red, disque.Position.X - disque.Rayon, disque.Position.Y - disque.Rayon, disque.Rayon * 2, disque.Rayon * 2);
                 }
             }
+
+            // Surligner les formes sélectionnées
+            foreach (var f in modele.getFormesSelectionnees())
+            {
+                using var pen = new Pen(Color.Yellow, 2);
+                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                if (f is Rectangle r)
+                    e.Graphics.DrawRectangle(pen, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+                else if (f is Disque d)
+                    e.Graphics.DrawEllipse(pen, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -69,6 +85,15 @@ namespace TP8
                 e.Graphics.FillEllipse(fill, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
                 e.Graphics.DrawEllipse(border, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
             }
+
+            if (isSelecting && selectionRect.Width > 0 && selectionRect.Height > 0)
+            {
+                using var pen = new Pen(Color.DodgerBlue, 1);
+                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                using var fill = new SolidBrush(Color.FromArgb(30, Color.DodgerBlue));
+                e.Graphics.FillRectangle(fill, selectionRect);
+                e.Graphics.DrawRectangle(pen, selectionRect);
+            }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -91,16 +116,39 @@ namespace TP8
             }
             else if (action == Action.deplacer)
             {
-                for (int i = 0; i < modele.getNombreFormes(); i++)
+                bool clicSurSelection = modele.getFormesSelectionnees()
+                    .Any(f => f.ContientPoint(e.Location));
+
+                if (clicSurSelection)
                 {
-                    if (modele.getFormeId(i).ContientPoint(e.Location))
+                    lastMousePosition = e.Location;
+                    formeSelection = null;
+                    isDraggingSelection = true; // ← on commence vraiment à glisser
+                }
+                else
+                {
+                    modele.clearSelection();
+                    isDraggingSelection = false;
+                    for (int i = 0; i < modele.getNombreFormes(); i++)
                     {
-                        formeSelection = modele.getFormeId(i);
-                        lastMousePosition = e.Location;
-                        break;
+                        if (modele.getFormeId(i).ContientPoint(e.Location))
+                        {
+                            formeSelection = modele.getFormeId(i);
+                            lastMousePosition = e.Location;
+                            break;
+                        }
                     }
                 }
             }
+            else if (action == Action.selectionner)
+            {
+                positionInitiale = e.Location;
+                isSelecting = true;
+                selectionRect = System.Drawing.Rectangle.Empty;
+                formesSelectionnees.Clear();
+                modele.clearSelection();
+            }
+            
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
@@ -120,7 +168,37 @@ namespace TP8
                 modele.ajouterForme(disquePreview);
             }
 
+            if (isSelecting && action == Action.selectionner)
+            {
+                isSelecting = false;
+                // Trouver toutes les formes dans le rectangle
+                var selection = new List<FormeGeo>();
+                for (int i = 0; i < modele.getNombreFormes(); i++)
+                {
+                    var f = modele.getFormeId(i);
+                    // APRÈS (vérifie toute la forme)
+                    if (f is Rectangle r)
+                    {
+                        var boundsR = new System.Drawing.Rectangle(r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+                        if (selectionRect.IntersectsWith(boundsR))
+                            selection.Add(f);
+                    }
+                    else if (f is Disque d)
+                    {
+                        var boundsD = new System.Drawing.Rectangle(d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
+                        if (selectionRect.IntersectsWith(boundsD))
+                            selection.Add(f);
+                    }
+                }
+                modele.setSelection(selection);
+                formesSelectionnees = selection;
+                selectionRect = System.Drawing.Rectangle.Empty;
+                Invalidate();
+                return;
+            }
+
             isDragging = false;
+            isDraggingSelection = false;
             rectPreview = null;
             disquePreview = null;
             formeSelection = null;
@@ -163,6 +241,17 @@ namespace TP8
                 return;
             }
 
+            if (isSelecting && action == Action.selectionner)
+            {
+                int x = Math.Min(positionInitiale.X, e.X);
+                int y = Math.Min(positionInitiale.Y, e.Y);
+                int w = Math.Abs(e.X - positionInitiale.X);
+                int h = Math.Abs(e.Y - positionInitiale.Y);
+                selectionRect = new System.Drawing.Rectangle(x, y, w, h);
+                Invalidate();
+                return;
+            }
+
             // calcul des dimensions (déplacement)
             if (formeSelection != null)
             {
@@ -172,6 +261,19 @@ namespace TP8
                 formeSelection.Y += deltaY;
                 lastMousePosition = e.Location;
                 this.Invalidate();
+            }
+
+            if (isDraggingSelection && modele.getFormesSelectionnees().Count > 0)
+            {
+                int deltaX = e.X - lastMousePosition.X;
+                int deltaY = e.Y - lastMousePosition.Y;
+                foreach (var f in modele.getFormesSelectionnees())
+                {
+                    f.X += deltaX;
+                    f.Y += deltaY;
+                }
+                lastMousePosition = e.Location;
+                Invalidate();
             }
         }
     }

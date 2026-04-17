@@ -62,6 +62,17 @@
             button3.Text = "Disque";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
+            //
+            //button4
+            //
+            button4 = new Button();
+            button4.Location = new Point(174, 41);
+            button4.Name = "button4";
+            button4.Size = new Size(75, 23);
+            button4.TabIndex = 3;
+            button4.Text = "Sélectionner";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // TP8
             // 
@@ -71,6 +82,7 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
+            Controls.Add(button4);
             Name = "TP8";
             Text = "Form1";
             ResumeLayout(false);
@@ -81,5 +93,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button button4;
     }
 }

@@ -34,5 +34,12 @@ namespace TP8
         {
             modele.setAction(Action.creerDisque);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            modele.setAction(Action.selectionner);
+        }
+
+
     }
 }

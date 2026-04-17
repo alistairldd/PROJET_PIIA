@@ -2,5 +2,6 @@
 {
     creerRectangle,
     creerDisque,
-    deplacer
+    deplacer,
+    selectionner
 }

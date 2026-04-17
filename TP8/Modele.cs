@@ -46,9 +46,26 @@ namespace TP8
         {
             this.actionEnCours = action;
         }
+
+        private List<FormeGeo> formesSelectionnees = new List<FormeGeo>();
+
+        public List<FormeGeo> getFormesSelectionnees()
+        {
+            return formesSelectionnees;
+        }
+
+        public void setSelection(List<FormeGeo> formes)
+        {
+            formesSelectionnees = formes;
+        }
+
+        public void clearSelection()
+        {
+            formesSelectionnees.Clear();
+        }
     }
 
-    
+
     public class Rectangle : FormeGeo
     {
         private double longueur;
@@ -90,5 +107,20 @@ namespace TP8
             int dy = p.Y - this.Position.Y;
             return dx * dx + dy * dy <= Rayon * Rayon;
         }
+
+    private List<FormeGeo> formesSelectionnees = new List<FormeGeo>();
+
+        public List<FormeGeo> getFormesSelectionnees() => formesSelectionnees;
+
+        public void setSelection(List<FormeGeo> formes)
+        {
+            formesSelectionnees = formes;
+        }
+
+        public void clearSelection()
+        {
+            formesSelectionnees.Clear();
+        }
+
     }
 }
