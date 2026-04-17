@@ -10,7 +10,6 @@ namespace TP8
     internal class Modele
     {
         private List<FormeGeo> formes = new List<FormeGeo>();
-        private List<Dessin> dessins = new List<Dessin>();
 
         private Action actionEnCours;
         public FormeGeo getFormeId(int id)
@@ -56,17 +55,19 @@ namespace TP8
     {
         private double longueur;
         private double hauteur;
+        private Color Couleur;
 
         public int Largeur { get; set; }
         public int Hauteur { get; set; }
 
-        public Rectangle(Point point, int largeur, int hauteur) : base(point)
+        public Rectangle(Point point, int largeur, int hauteur, Color couleur, int zFactor) : base(point, couleur, zFactor)
         {
-            this.Hauteur = hauteur;
-            this.Largeur = largeur;
+            Hauteur = hauteur;
+            Largeur = largeur;
+            Couleur = couleur;
         }
 
-        public Rectangle(Point p, double longueur, double hauteur) : base(p)
+        public Rectangle(Point p, double longueur, double hauteur, Color couleur, int zFactor) : base(p, couleur, zFactor)
         {
             this.longueur = longueur;
             this.hauteur = hauteur;
@@ -76,15 +77,35 @@ namespace TP8
         {
             return (p.X >= this.Position.X && p.X <= this.Position.X + Largeur) && (p.Y >= this.Position.Y && p.Y <= this.Position.Y + Hauteur);
         }
+
+        public override Color getCouleur()
+        {
+            return Couleur;
+        }
+
+        public override void setCouleur(Color newCouleur)
+        {
+            Couleur = newCouleur;
+        }
+
+
+
     }
 
     public class Disque : FormeGeo
     {
-        public int Rayon { get; set; }
+        private int Rayon { get; set; }
+        private Color Couleur;
 
-        public Disque(Point centre, int rayon) : base(centre)
+        public Disque(Point centre, int rayon, Color couleur, int zFactor) : base(centre, couleur, zFactor)
         {
             Rayon = rayon;
+            Couleur = couleur;
+        }
+
+        public int getRayon()
+        {
+            return Rayon;
         }
 
         public override bool ContientPoint(Point p)
@@ -93,6 +114,17 @@ namespace TP8
             int dy = p.Y - this.Position.Y;
             return dx * dx + dy * dy <= Rayon * Rayon;
         }
+
+        public override Color getCouleur()
+        {
+            return Couleur;
+        }
+
+        public override void setCouleur(Color newCouleur)
+        {
+            Couleur = newCouleur;
+        }
+
     }
 
     public class Droite : FormeGeo
@@ -101,10 +133,13 @@ namespace TP8
 
         public Point PointFin { get; set; }
 
-        public Droite(Point pointDebut, Point pointFin) : base(pointDebut)
+        public Color Couleur { get; set; }
+
+        public Droite(Point pointDebut, Point pointFin, Color couleur, int zFactor) : base(pointDebut, couleur, zFactor)
         {
             PointDebut = pointDebut;
             PointFin = pointFin;
+            Couleur = couleur;
         }
 
         public override bool ContientPoint(Point p)
@@ -132,15 +167,32 @@ namespace TP8
             // Tolérance pour "contenir" le point
             return distance <= 5;
         }
+
+        public override Color getCouleur()
+        {
+            return Couleur;
+        }
+
+        public override void setCouleur(Color newCouleur)
+        {
+            Couleur = newCouleur;
+        }
     }
 
     public class Dessin : FormeGeo
     {
-        public List<Point> Points { get; } = new List<Point>();
+        private List<Point> Points { get; } = new List<Point>();
+        private Color Couleur;
 
-        public Dessin(Point start) : base(start)
+        public Dessin(Point start, Color couleur, int zFactor) : base(start, couleur, zFactor)
         {
             Points.Add(start);
+            Couleur = couleur;
+        }
+
+        public List<Point> getPoints()
+        {
+            return Points;
         }
 
         public void AjouterPoint(Point p)
@@ -167,6 +219,16 @@ namespace TP8
                 if (distance <= 5) return true;
             }
             return false;
+        }
+
+        public override Color getCouleur()
+        {
+            return Couleur;
+        }
+
+        public override void setCouleur(Color newCouleur)
+        {
+            Couleur = newCouleur;
         }
     }
 

@@ -9,6 +9,10 @@ namespace TP8
     public abstract class FormeGeo
     {
         private Point position;
+
+        private Color Couleur { get; set; }
+        private int ZFactor { get; set; }
+
         public Point Position
         {
             get => position;
@@ -37,11 +41,16 @@ namespace TP8
                 position.Y = value;
             }
         }
-        public FormeGeo(Point p)
+        public FormeGeo(Point p, Color couleur, int zFactor)
         {
             this.Position = p;
+            this.Couleur = couleur;
+            this.ZFactor = zFactor;
         }
 
         public abstract bool ContientPoint(Point p);
+
+        public abstract Color getCouleur();
+        public abstract void setCouleur(Color couleur);
     }
 }

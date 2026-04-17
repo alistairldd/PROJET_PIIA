@@ -21,6 +21,14 @@ namespace TP8
         private Droite? droitePreview;
         private Dessin? polylignePreview;
 
+        Color couleur = Color.Black;
+
+        public Color Couleur
+        {
+            get => couleur;
+            set => couleur = value;
+        }
+
         public ZoneDessin(Modele modele)
         {
             this.Location = new Point(10, 10);
@@ -30,33 +38,36 @@ namespace TP8
 
         }
 
+
+
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             e.Graphics.Clear(Color.White);
             for (int i = 0; i < modele.getNombreFormes(); i++)
             {
                 FormeGeo forme = modele.getFormeId(i);
-                if (forme is Rectangle)
+                Color color = forme.getCouleur();
+
+                using var brush = new SolidBrush(color);
+                using var pen = new Pen(color, 2);
+
+                if (forme is Rectangle rect)
                 {
-                    Rectangle rect = (Rectangle)forme;
-                    e.Graphics.FillRectangle(Brushes.Blue, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
+                    e.Graphics.DrawRectangle(pen, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
                 }
-                else if (forme is Disque)
+                else if (forme is Disque disque)
                 {
-                    Disque disque = (Disque)forme;
-                    e.Graphics.FillEllipse(Brushes.Red, disque.Position.X - disque.Rayon, disque.Position.Y - disque.Rayon, disque.Rayon * 2, disque.Rayon * 2);
+                    e.Graphics.DrawEllipse(pen, disque.Position.X - disque.getRayon(), disque.Position.Y - disque.getRayon(), disque.getRayon() * 2, disque.getRayon() * 2);
                 }
-                else if (forme is Droite)
+                else if (forme is Droite droite)
                 {
-                    Droite droite = (Droite)forme;
-                    e.Graphics.DrawLine(Pens.Green, droite.PointDebut, droite.PointFin);
+                    e.Graphics.DrawLine(pen, droite.PointDebut, droite.PointFin);
                 }
-                else if (forme is Dessin)
+                else if (forme is Dessin dessin)
                 {
-                    Dessin dessin = (Dessin)forme;
-                    var pts = dessin.Points.ToArray();
+                    var pts = dessin.getPoints().ToArray();
                     if (pts.Length > 1)
-                        e.Graphics.DrawLines(Pens.Purple, pts);
+                        e.Graphics.DrawLines(pen, pts);
                 }
             }
         }
@@ -67,8 +78,8 @@ namespace TP8
 
             if (rectPreview is not null)
             {
-                using var fill = new SolidBrush(Color.FromArgb(80, Color.Navy));
-                using var border = new Pen(Color.FromArgb(180, Color.Navy), 2);
+                using var fill = new SolidBrush(Color.FromArgb(80, Color.Black));
+                using var border = new Pen(Color.FromArgb(180, Color.Black), 2);
                 var r = rectPreview;
                 e.Graphics.FillRectangle(fill, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
                 e.Graphics.DrawRectangle(border, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
@@ -76,25 +87,25 @@ namespace TP8
 
             if (disquePreview is not null)
             {
-                using var fill = new SolidBrush(Color.FromArgb(80, Color.DarkRed));
-                using var border = new Pen(Color.FromArgb(180, Color.DarkRed), 2);
+                using var fill = new SolidBrush(Color.FromArgb(80, Color.Black));
+                using var border = new Pen(Color.FromArgb(180, Color.Black), 2);
                 var d = disquePreview;
-                e.Graphics.FillEllipse(fill, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
-                e.Graphics.DrawEllipse(border, d.Position.X - d.Rayon, d.Position.Y - d.Rayon, d.Rayon * 2, d.Rayon * 2);
+                e.Graphics.FillEllipse(fill, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                e.Graphics.DrawEllipse(border, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
             }
 
             if (droitePreview is not null)
             {
-                using var pen = new Pen(Color.FromArgb(180, Color.DarkGreen), 2);
+                using var pen = new Pen(Color.FromArgb(180, Color.Black), 2);
                 var dr = droitePreview;
                 e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
             }
 
             if (polylignePreview != null)
             {
-                var pts = polylignePreview.Points.ToArray();
+                var pts = polylignePreview.getPoints().ToArray();
                 if (pts.Length > 1)
-                    e.Graphics.DrawLines(Pens.Purple, pts);
+                    e.Graphics.DrawLines(Pens.Black, pts);
             }
         }
 
@@ -128,7 +139,7 @@ namespace TP8
             }
             else if (action == Action.dessiner)
             {
-                polylignePreview = new Dessin(e.Location);
+                polylignePreview = new Dessin(e.Location, couleur, 0);
                 isDragging = true;
                 Invalidate();
             }
@@ -197,7 +208,7 @@ namespace TP8
                 int height = Math.Abs(e.Y - positionInitiale.Y);
 
                 rectPreview = (width > 0 && height > 0)
-                    ? new Rectangle(new Point(left, top), width, height)
+                    ? new Rectangle(new Point(left, top), width, height, couleur, 0)
                     : null;
 
                 Invalidate();
@@ -211,7 +222,7 @@ namespace TP8
                 int rayon = (int)Math.Sqrt(dx * dx + dy * dy);
 
                 disquePreview = (rayon > 0)
-                    ? new Disque(positionInitiale, rayon)
+                    ? new Disque(positionInitiale, rayon, couleur, 0)
                     : null;
 
                 Invalidate();
@@ -220,7 +231,7 @@ namespace TP8
 
             if (isDragging && action == Action.creerDroite)
             {
-                droitePreview = new Droite(positionInitiale, e.Location);
+                droitePreview = new Droite(positionInitiale, e.Location, couleur, 0);
                 Invalidate();
                 return;
             }
@@ -247,9 +258,9 @@ namespace TP8
 
                 if (formeSelection is Dessin dessin)
                 {
-                    for (int i = 0; i < dessin.Points.Count; i++)
+                    for (int i = 0; i < dessin.getPoints().Count; i++)
                     {
-                        dessin.Points[i] = new Point(dessin.Points[i].X + deltaX, dessin.Points[i].Y + deltaY);
+                        dessin.getPoints()[i] = new Point(dessin.getPoints()[i].X + deltaX, dessin.getPoints()[i].Y + deltaY);
                     }
                 }
 
