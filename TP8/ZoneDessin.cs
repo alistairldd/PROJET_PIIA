@@ -43,8 +43,10 @@ namespace TP8
 
         public ZoneDessin(Modele modele)
         {
-            this.Location = new Point(10, 10);
-            this.Size = new Size(400, 400);
+            // taille et position de la zone de dessin
+            // la taille de la zone de dessin correspond à la taille de la fenetre
+            this.Location = new Point(50,100);
+            this.Size = new Size(800, 450);
             this.modele = modele;
             this.DoubleBuffered = true;
 
@@ -95,6 +97,14 @@ namespace TP8
                     e.Graphics.DrawRectangle(pen, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
                 else if (f is Disque d)
                     e.Graphics.DrawEllipse(pen, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                else if (f is Droite dr)
+                    e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
+                else if (f is Dessin dessin)
+                {
+                    var pts = dessin.getPoints().ToArray();
+                    if (pts.Length > 1)
+                        e.Graphics.DrawLines(pen, pts);
+                }
             }
 
 
@@ -104,11 +114,13 @@ namespace TP8
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
+            using var fill = new SolidBrush(Color.FromArgb(80, Couleur));
+            using var pen = new Pen(Couleur, 2);
+            using var border = new Pen(Color.FromArgb(180, Color.Black), 2);
             if (rectPreview is not null)
             {
-                using var fill = new SolidBrush(Color.FromArgb(80, Color.Black));
-                using var border = new Pen(Color.FromArgb(180, Color.Black), 2);
+                
+                
                 var r = rectPreview;
                 e.Graphics.FillRectangle(fill, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
                 e.Graphics.DrawRectangle(border, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
@@ -116,8 +128,6 @@ namespace TP8
 
             if (disquePreview is not null)
             {
-                using var fill = new SolidBrush(Color.FromArgb(80, Color.Black));
-                using var border = new Pen(Color.FromArgb(180, Color.Black), 2);
                 var d = disquePreview;
                 e.Graphics.FillEllipse(fill, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
                 e.Graphics.DrawEllipse(border, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
@@ -125,7 +135,6 @@ namespace TP8
 
             if (droitePreview is not null)
             {
-                using var pen = new Pen(Color.FromArgb(180, Color.Black), 2);
                 var dr = droitePreview;
                 e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
             }
@@ -134,16 +143,16 @@ namespace TP8
             {
                 var pts = polylignePreview.getPoints().ToArray();
                 if (pts.Length > 1)
-                    e.Graphics.DrawLines(Pens.Black, pts);
+                    e.Graphics.DrawLines(pen, pts);
             }
 
             if (isSelecting && selectionRect.Width > 0 && selectionRect.Height > 0)
             {
-                using var pen = new Pen(Color.DodgerBlue, 1);
+                using var pen2 = new Pen(Color.DodgerBlue, 1);
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                using var fill = new SolidBrush(Color.FromArgb(30, Color.DodgerBlue));
-                e.Graphics.FillRectangle(fill, selectionRect);
-                e.Graphics.DrawRectangle(pen, selectionRect);
+                using var fill2 = new SolidBrush(Color.FromArgb(30, Color.DodgerBlue));
+                e.Graphics.FillRectangle(fill2, selectionRect);
+                e.Graphics.DrawRectangle(pen2, selectionRect);
             }
 
             // Poignées si une seule forme est sélectionnée
@@ -254,8 +263,7 @@ namespace TP8
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            // ajouter la forme dans le modele
-            // faut un form temporaire
+            
             
             Action action = modele.getAction();
 

@@ -19,7 +19,7 @@ namespace TP8
 
             modele.ajouterForme(new Disque(new Point(200, 100), 40, Color.Green, 0));
 
-            modele.ajouterForme(new Droite(new Point(300, 50), new Point(350, 150), Color.Honeydew, 0));
+            modele.ajouterForme(new Droite(new Point(300, 50), new Point(350, 150), Color.Blue, 0));
         }
 
 
@@ -91,6 +91,18 @@ namespace TP8
         private void button13_Click(object sender, EventArgs e)
         {
             modele.setAction(Action.selectionner);
+        }
+
+        private void accessibilitéToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            modele.supprimer();
+            zoneDessin.Invalidate();
+            zoneDessin.Update(); // on met ça pour que ça affiche la suppression direct et pas une fois qu'on a cliqué autre part
         }
     }
 }

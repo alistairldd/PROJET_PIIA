@@ -38,6 +38,17 @@ namespace TP8
 
         }
 
+        public void supprimerForme(FormeGeo forme)
+        {
+            if (formes.Remove(forme))
+            {
+                Console.WriteLine("Forme supprimée : " + forme.GetType().Name);
+            }
+            else
+            {
+                Console.WriteLine("La forme n'a pas été trouvée et ne peut pas être supprimée.");
+            }
+        }
 
         public Action getAction()
         {
@@ -64,6 +75,15 @@ namespace TP8
         public void clearSelection()
         {
             formesSelectionnees.Clear();
+        }
+
+        public void supprimer()
+        {
+            var formesASupprimer = getFormesSelectionnees().ToList();
+            foreach (var f in formesASupprimer)
+                supprimerForme(f);
+
+            clearSelection();
         }
     }
 
