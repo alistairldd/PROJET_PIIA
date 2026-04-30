@@ -124,5 +124,29 @@ namespace TP8
         {
             modele.setAction(Action.creerTexte);
         }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            using var dialog = new SaveFileDialog();
+            dialog.Filter = "Fichier TP8 (*.tp8)|*.tp8";
+            dialog.DefaultExt = "tp8";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Serialisation.Sauvegarder(modele, dialog.FileName);
+                MessageBox.Show("Sauvegarde réussie !");
+            }
+
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            using var dialog = new OpenFileDialog();
+            dialog.Filter = "Fichier TP8 (*.tp8)|*.tp8";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Serialisation.Charger(modele, dialog.FileName);
+                zoneDessin.Invalidate();
+            }
+        }
     }
 }
