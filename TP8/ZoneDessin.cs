@@ -83,7 +83,12 @@ namespace TP8
                     if (pts.Length > 1)
                         e.Graphics.DrawLines(pen, pts);
                 }
-                
+
+                else if (forme is Texte texte)
+                {
+                    e.Graphics.DrawString(texte.Contenu, texte.Police, brush, texte.Position.X, texte.Position.Y);
+                }
+
             }
         
             
@@ -105,6 +110,13 @@ namespace TP8
                     if (pts.Length > 1)
                         e.Graphics.DrawLines(pen, pts);
                 }
+
+                else if (f is Texte t)
+                {
+                    var taille = MesureTexte(t);
+                    e.Graphics.DrawRectangle(pen, t.Position.X, t.Position.Y, taille.Width, taille.Height);
+                }
+
             }
 
 
@@ -255,7 +267,16 @@ namespace TP8
                 modele.clearSelection();
             }
 
-
+            else if (action == Action.creerTexte)
+            {
+                // Ouvrir une boite de dialogue pour saisir le texte
+                string texte = Microsoft.VisualBasic.Interaction.InputBox("Entrez votre texte :", "Texte", "");
+                if (!string.IsNullOrEmpty(texte))
+                {
+                    modele.ajouterForme(new Texte(e.Location, texte, couleur, 0));
+                    Invalidate();
+                }
+            }
 
 
         }
@@ -328,6 +349,13 @@ namespace TP8
                         int h = dessin.getPoints().Max(p => p.Y) - y;
                         var boundsDes = new System.Drawing.Rectangle(x, y, Math.Max(w, 1), Math.Max(h, 1));
                         if (selectionRect.IntersectsWith(boundsDes))
+                            selection.Add(f);
+                    }
+                    else if (f is Texte t)
+                    {
+                        var taille = MesureTexte(t);
+                        var boundsT = new System.Drawing.Rectangle(t.Position.X, t.Position.Y, (int)taille.Width, (int)taille.Height);
+                        if (selectionRect.IntersectsWith(boundsT))
                             selection.Add(f);
                     }
                 }
@@ -441,7 +469,12 @@ namespace TP8
                     else
                         dr.PointFin = new Point(dr.PointFin.X + deltaX, dr.PointFin.Y + deltaY);
                 }
-
+                else if (formeRedimensionnee is Texte t)
+                {
+                    // On change la taille de la police selon le delta
+                    float nouvelleTaille = Math.Max(6, t.Police.Size + (deltaX + deltaY) * 0.1f);
+                    t.Police = new Font(t.Police.FontFamily, nouvelleTaille);
+                }
                 lastMousePosition = e.Location;
                 Invalidate();
                 return;
@@ -541,9 +574,28 @@ namespace TP8
             new System.Drawing.Rectangle(dr.PointFin.X - s/2,   dr.PointFin.Y - s/2,   s, s), // 1 fin
         };
             }
+            else if (f is Texte t)
+            {
+                var taille = MesureTexte(t);
+                int x = t.Position.X, y = t.Position.Y;
+                int w = (int)taille.Width, h = (int)taille.Height;
+                return new[]
+                {
+            new System.Drawing.Rectangle(x - s/2,     y - s/2,     s, s), // 0 haut-gauche
+            new System.Drawing.Rectangle(x + w - s/2, y - s/2,     s, s), // 1 haut-droite
+            new System.Drawing.Rectangle(x + w - s/2, y + h - s/2, s, s), // 2 bas-droite
+            new System.Drawing.Rectangle(x - s/2,     y + h - s/2, s, s), // 3 bas-gauche
+        };
+            }
+
             return Array.Empty<System.Drawing.Rectangle>();
         }
+        private System.Drawing.SizeF MesureTexte(Texte t)
+        {
+            using var g = this.CreateGraphics();
+            return g.MeasureString(t.Contenu, t.Police);
+        }
 
-        
+
     }
 }

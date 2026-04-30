@@ -51,41 +51,56 @@ namespace TP8
         private void button6_Click(object sender, EventArgs e) // Rouge
         {
             zoneDessin.Couleur = Color.Red;
+            modele.setCouleurSelection(Color.Red);
+            zoneDessin.Invalidate();
         }
 
         private void button7_Click(object sender, EventArgs e) // vert
         {
             zoneDessin.Couleur = Color.Green;
+            modele.setCouleurSelection(Color.Green);
+            zoneDessin.Invalidate();
 
         }
 
         private void button8_Click(object sender, EventArgs e) // bleu
         {
             zoneDessin.Couleur = Color.Blue;
+            modele.setCouleurSelection(Color.Blue);
+            zoneDessin.Invalidate();
 
         }
 
         private void button9_Click(object sender, EventArgs e) // jaune truc
         {
             zoneDessin.Couleur = Color.FromArgb(192, 192, 0);
+            modele.setCouleurSelection(Color.FromArgb(192, 192, 0));
+            zoneDessin.Invalidate();
 
         }
 
         private void button10_Click(object sender, EventArgs e) // canard
         {
             zoneDessin.Couleur = Color.Teal;
+            modele.setCouleurSelection(Color.Teal);
+            zoneDessin.Invalidate();
+
 
         }
 
         private void button12_Click(object sender, EventArgs e) // noir
         {
             zoneDessin.Couleur = Color.Black;
+            modele.setCouleurSelection(Color.Black);
+            zoneDessin.Invalidate();
 
         }
 
         private void button11_Click(object sender, EventArgs e) // white
         {
             zoneDessin.Couleur = Color.White;
+            modele.setCouleurSelection(Color.White);
+            zoneDessin.Invalidate();
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -103,6 +118,11 @@ namespace TP8
             modele.supprimer();
             zoneDessin.Invalidate();
             zoneDessin.Update(); // on met ça pour que ça affiche la suppression direct et pas une fois qu'on a cliqué autre part
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            modele.setAction(Action.creerTexte);
         }
     }
 }

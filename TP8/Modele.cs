@@ -85,6 +85,12 @@ namespace TP8
 
             clearSelection();
         }
+
+        public void setCouleurSelection(Color couleur)
+        {
+            foreach (var f in formesSelectionnees)
+                f.setCouleur(couleur);
+        }
     }
 
 
@@ -288,6 +294,31 @@ namespace TP8
         {
             Couleur = newCouleur;
         }
+    }
+
+    public class Texte : FormeGeo
+    {
+        public string Contenu { get; set; }
+        public Font Police { get; set; }
+        private Color Couleur;
+
+        public Texte(Point position, string contenu, Color couleur, int zFactor) : base(position, couleur, zFactor)
+        {
+            Contenu = contenu;
+            Police = new Font("Arial", 14);
+            Couleur = couleur;
+        }
+
+        public override bool ContientPoint(Point p)
+        {
+            int largeur = (int)(Contenu.Length * Police.Size * 0.6f);
+            int hauteur = (int)(Police.Size * 1.8f);
+            return p.X >= Position.X && p.X <= Position.X + largeur &&
+                   p.Y >= Position.Y && p.Y <= Position.Y + hauteur;
+        }
+
+        public override Color getCouleur() => Couleur;
+        public override void setCouleur(Color c) => Couleur = c;
     }
 
 }
