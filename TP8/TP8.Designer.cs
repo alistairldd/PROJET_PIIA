@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TP8));
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -38,9 +39,9 @@
             button12 = new Button();
             button9 = new Button();
             button8 = new Button();
+            button6 = new Button();
             button10 = new Button();
             button7 = new Button();
-            button6 = new Button();
             button13 = new Button();
             statusStrip1 = new StatusStrip();
             menuStrip1 = new MenuStrip();
@@ -112,9 +113,9 @@
             panel1.Controls.Add(button12);
             panel1.Controls.Add(button9);
             panel1.Controls.Add(button8);
+            panel1.Controls.Add(button6);
             panel1.Controls.Add(button10);
             panel1.Controls.Add(button7);
-            panel1.Controls.Add(button6);
             panel1.Location = new Point(325, 27);
             panel1.Name = "panel1";
             panel1.Size = new Size(247, 33);
@@ -123,7 +124,7 @@
             // button11
             // 
             button11.BackColor = Color.White;
-            button11.Location = new Point(36, 0);
+            button11.Location = new Point(72, 0);
             button11.Name = "button11";
             button11.Size = new Size(30, 30);
             button11.TabIndex = 7;
@@ -142,8 +143,10 @@
             // 
             // button9
             // 
-            button9.BackColor = Color.FromArgb(192, 192, 0);
-            button9.Location = new Point(180, 0);
+            button9.BackColor = Color.Transparent;
+            button9.BackgroundImage = (Image)resources.GetObject("button9.BackgroundImage");
+            button9.BackgroundImageLayout = ImageLayout.Stretch;
+            button9.Location = new Point(214, 0);
             button9.Name = "button9";
             button9.Size = new Size(30, 30);
             button9.TabIndex = 3;
@@ -154,17 +157,27 @@
             // 
             button8.BackColor = Color.Navy;
             button8.ForeColor = SystemColors.ActiveBorder;
-            button8.Location = new Point(144, 0);
+            button8.Location = new Point(178, 0);
             button8.Name = "button8";
             button8.Size = new Size(30, 30);
             button8.TabIndex = 2;
             button8.UseVisualStyleBackColor = false;
             button8.Click += button8_Click;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(192, 0, 0);
+            button6.Location = new Point(108, 0);
+            button6.Name = "button6";
+            button6.Size = new Size(30, 30);
+            button6.TabIndex = 0;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // button10
             // 
-            button10.BackColor = Color.Teal;
-            button10.Location = new Point(216, 0);
+            button10.BackColor = Color.Gray;
+            button10.Location = new Point(36, 0);
             button10.Name = "button10";
             button10.Size = new Size(30, 30);
             button10.TabIndex = 6;
@@ -174,22 +187,12 @@
             // button7
             // 
             button7.BackColor = Color.Green;
-            button7.Location = new Point(108, 0);
+            button7.Location = new Point(144, 0);
             button7.Name = "button7";
             button7.Size = new Size(30, 30);
             button7.TabIndex = 1;
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(192, 0, 0);
-            button6.Location = new Point(72, 0);
-            button6.Name = "button6";
-            button6.Size = new Size(30, 30);
-            button6.TabIndex = 0;
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
             // 
             // button13
             // 
@@ -231,13 +234,13 @@
             // sauvegarderToolStripMenuItem
             // 
             sauvegarderToolStripMenuItem.Name = "sauvegarderToolStripMenuItem";
-            sauvegarderToolStripMenuItem.Size = new Size(180, 22);
+            sauvegarderToolStripMenuItem.Size = new Size(139, 22);
             sauvegarderToolStripMenuItem.Text = "Sauvegarder";
             // 
             // ouvrirToolStripMenuItem
             // 
             ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            ouvrirToolStripMenuItem.Size = new Size(180, 22);
+            ouvrirToolStripMenuItem.Size = new Size(139, 22);
             ouvrirToolStripMenuItem.Text = "Ouvrir";
             // 
             // accessibilitéToolStripMenuItem

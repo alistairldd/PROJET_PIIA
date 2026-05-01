@@ -76,16 +76,25 @@ namespace TP8
 
         private void button9_Click(object sender, EventArgs e) // jaune truc
         {
-            zoneDessin.Couleur = Color.FromArgb(192, 192, 0);
-            modele.setCouleurSelection(Color.FromArgb(192, 192, 0));
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+
+
+
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+            {
+                zoneDessin.Couleur = MyDialog.Color;
+                modele.setCouleurSelection(MyDialog.Color);
+            }
+            
             zoneDessin.Invalidate();
 
         }
 
         private void button10_Click(object sender, EventArgs e) // canard
         {
-            zoneDessin.Couleur = Color.Teal;
-            modele.setCouleurSelection(Color.Teal);
+            zoneDessin.Couleur = Color.Gray;
+            modele.setCouleurSelection(Color.Gray);
             zoneDessin.Invalidate();
 
 
