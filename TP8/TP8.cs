@@ -10,6 +10,9 @@ namespace TP8
         {
             InitializeComponent();
 
+            sauvegarderToolStripMenuItem.Click += sauvegarderToolStripMenuItem_Click;
+            ouvrirToolStripMenuItem.Click += ouvrirToolStripMenuItem_Click;
+
             modele = new Modele();
             zoneDessin = new ZoneDessin(modele);
             Controls.Add(zoneDessin);
@@ -125,7 +128,16 @@ namespace TP8
             modele.setAction(Action.creerTexte);
         }
 
-        private void button16_Click(object sender, EventArgs e)
+       
+
+        // Tout ça en dessous c'est pour le toolstrip (la barre en haut)
+
+        private void fichierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // rien
+        }
+
+        private void sauvegarderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var dialog = new SaveFileDialog();
             dialog.Filter = "Fichier TP8 (*.tp8)|*.tp8";
@@ -135,10 +147,9 @@ namespace TP8
                 Serialisation.Sauvegarder(modele, dialog.FileName);
                 MessageBox.Show("Sauvegarde réussie !");
             }
-
         }
 
-        private void button17_Click(object sender, EventArgs e)
+        private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var dialog = new OpenFileDialog();
             dialog.Filter = "Fichier TP8 (*.tp8)|*.tp8";
@@ -148,5 +159,6 @@ namespace TP8
                 zoneDessin.Invalidate();
             }
         }
+
     }
 }
