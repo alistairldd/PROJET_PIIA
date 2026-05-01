@@ -52,5 +52,15 @@ namespace TP8
 
         public abstract Color getCouleur();
         public abstract void setCouleur(Color couleur);
+
+        internal void setZFactor(int value)
+        {
+            this.ZFactor = value;
+        }
+
+        internal int getZFactor()
+        {
+            return ZFactor;
+        }
     }
 }

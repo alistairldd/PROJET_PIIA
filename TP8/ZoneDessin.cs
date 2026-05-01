@@ -56,10 +56,15 @@ namespace TP8
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
+            // On trie les formes par indice de profondeur pour dessiner tt ça
+            var formesTriees = modele.getFormes().OrderBy(f => f.getZFactor()).ToList();
+
+
+
             e.Graphics.Clear(Color.White);
-            for (int i = 0; i < modele.getNombreFormes(); i++)
+            for (int i = 0; i < formesTriees.Count; i++)
             {
-                FormeGeo forme = modele.getFormeId(i);
+                FormeGeo forme = formesTriees[i];
                 Color color = forme.getCouleur();
 
                 using var brush = new SolidBrush(color);
@@ -67,7 +72,7 @@ namespace TP8
 
                 if (forme is Rectangle rect)
                 {
-                    e.Graphics.DrawRectangle(pen, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
+                    e.Graphics.FillRectangle(brush, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
                 }
                 else if (forme is Disque disque)
                 {

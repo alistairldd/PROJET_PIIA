@@ -53,6 +53,8 @@
             jspToolStripMenuItem = new ToolStripMenuItem();
             button14 = new Button();
             button15 = new Button();
+            button16 = new Button();
+            button17 = new Button();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -284,11 +286,33 @@
             button15.UseVisualStyleBackColor = true;
             button15.Click += button15_Click;
             // 
+            // button16
+            // 
+            button16.Location = new Point(791, 55);
+            button16.Name = "button16";
+            button16.Size = new Size(75, 23);
+            button16.TabIndex = 11;
+            button16.Text = "Avant";
+            button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
+            // 
+            // button17
+            // 
+            button17.Location = new Point(872, 54);
+            button17.Name = "button17";
+            button17.Size = new Size(75, 23);
+            button17.TabIndex = 12;
+            button17.Text = "Arrière";
+            button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
+            // 
             // TP8
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1244, 630);
+            Controls.Add(button17);
+            Controls.Add(button16);
             Controls.Add(button15);
             Controls.Add(button14);
             Controls.Add(statusStrip1);
@@ -336,5 +360,7 @@
         private Button button15;
         private ToolStripMenuItem sauvegarderToolStripMenuItem;
         private ToolStripMenuItem ouvrirToolStripMenuItem;
+        private Button button16;
+        private Button button17;
     }
 }

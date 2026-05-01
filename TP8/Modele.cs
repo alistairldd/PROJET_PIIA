@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,9 @@ namespace TP8
         private List<FormeGeo> formes = new List<FormeGeo>();
 
         private Action actionEnCours;
+
+
+
         public FormeGeo getFormeId(int id)
         {
             if (id < 0 || id >= formes.Count)
@@ -90,6 +94,30 @@ namespace TP8
         {
             foreach (var f in formesSelectionnees)
                 f.setCouleur(couleur);
+        }
+
+        public void setZFactorSelectionAvant()
+        { // on vérifie pour chaque forme de la selection que la profondeur est pas déjà maximale, puisque ça sert à rien d'avoir une forme
+            // avec un zfacteur de 15 si toutes les autres sont à 0 ; du coup on regarde juste le max quoi
+            foreach (var f in formesSelectionnees)
+            {
+                int maxProfondeur = getFormes().Max(f => f.getZFactor());
+                if (f.getZFactor() < maxProfondeur+1)
+                    f.setZFactor(maxProfondeur + 1);
+
+            }
+        }
+
+        public void setZFactorSelectionArriere()
+        { // on vérifie pour chaque forme de la selection que la profondeur est pas déjà maximale, puisque ça sert à rien d'avoir une forme
+            // avec un zfacteur de 15 si toutes les autres sont à 0 ; du coup on regarde juste le max quoi
+            foreach (var f in formesSelectionnees)
+            {
+                int minProfondeur = getFormes().Min(f => f.getZFactor());
+                if (f.getZFactor() > minProfondeur-1)
+                    f.setZFactor(minProfondeur - 1);
+
+            }
         }
     }
 

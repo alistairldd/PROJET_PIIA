@@ -74,7 +74,7 @@ namespace TP8
 
         }
 
-        private void button9_Click(object sender, EventArgs e) // jaune truc
+        private void button9_Click(object sender, EventArgs e) // truc de colordialog (doc microsoft)
         {
             ColorDialog MyDialog = new ColorDialog();
             MyDialog.AllowFullOpen = false;
@@ -86,12 +86,12 @@ namespace TP8
                 zoneDessin.Couleur = MyDialog.Color;
                 modele.setCouleurSelection(MyDialog.Color);
             }
-            
+
             zoneDessin.Invalidate();
 
         }
 
-        private void button10_Click(object sender, EventArgs e) // canard
+        private void button10_Click(object sender, EventArgs e) // gris
         {
             zoneDessin.Couleur = Color.Gray;
             modele.setCouleurSelection(Color.Gray);
@@ -120,10 +120,7 @@ namespace TP8
             modele.setAction(Action.selectionner);
         }
 
-        private void accessibilitéToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void button14_Click(object sender, EventArgs e)
         {
@@ -137,17 +134,28 @@ namespace TP8
             modele.setAction(Action.creerTexte);
         }
 
-       
+        private void button16_Click(object sender, EventArgs e)
+        {
+            modele.setZFactorSelectionAvant();
+            zoneDessin.Invalidate();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            modele.setZFactorSelectionArriere();
+            zoneDessin.Invalidate();
+        }
+
 
         // Tout ça en dessous c'est pour le toolstrip (la barre en haut)
 
         private void fichierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // rien
+            // y'a rien mais je le mets sinon ça marche pas 
         }
 
         private void sauvegarderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        { // pour sauvegarder
             using var dialog = new SaveFileDialog();
             dialog.Filter = "Fichier TP8 (*.tp8)|*.tp8";
             dialog.DefaultExt = "tp8";
@@ -159,7 +167,7 @@ namespace TP8
         }
 
         private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        { // pour ouvrir
             using var dialog = new OpenFileDialog();
             dialog.Filter = "Fichier TP8 (*.tp8)|*.tp8";
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -169,5 +177,11 @@ namespace TP8
             }
         }
 
+        private void accessibilitéToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // y'a rien mais je le mets sinon ça marche pas
+        }
+
+        
     }
 }
