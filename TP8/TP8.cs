@@ -6,6 +6,12 @@ namespace TP8
         Action action { get; set; }
         Modele modele;
         private ZoneDessin zoneDessin;
+
+        private int longueur = 1200;
+        private int largeur = 900;
+
+
+
         public TP8()
         {
             InitializeComponent();
@@ -23,6 +29,8 @@ namespace TP8
             modele.ajouterForme(new Disque(new Point(200, 100), 40, Color.Green, 0));
 
             modele.ajouterForme(new Droite(new Point(300, 50), new Point(350, 150), Color.Blue, 0));
+
+            this.Size = new Size(longueur, largeur);
         }
 
 
@@ -182,6 +190,42 @@ namespace TP8
             // y'a rien mais je le mets sinon ça marche pas
         }
 
-        
+        // les radio button qui servent à resize la zone de dessin
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            zoneDessin.resize(450, 450);
+            zoneDessin.replace(new Point((longueur-450)/2, (largeur-450)/2));
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            zoneDessin.resize(800, 450);
+            zoneDessin.replace(new Point((longueur-800)/2, (largeur-450)/2));
+            zoneDessin.Invalidate();
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            zoneDessin.resize(800, 600);
+            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 600) / 2));
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            zoneDessin.resize(750, 500);
+            zoneDessin.replace(new Point((longueur - 750) / 2, (largeur - 500) / 2));
+
+
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            zoneDessin.resize(800, 400);
+            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 400) / 2));
+
+        }
     }
 }

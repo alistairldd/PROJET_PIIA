@@ -55,13 +55,20 @@
             button15 = new Button();
             button16 = new Button();
             button17 = new Button();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton3 = new RadioButton();
+            radioButton4 = new RadioButton();
+            radioButton5 = new RadioButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(106, 27);
+            button1.Location = new Point(99, 66);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -111,6 +118,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.PeachPuff;
             panel1.Controls.Add(button11);
             panel1.Controls.Add(button12);
             panel1.Controls.Add(button9);
@@ -198,7 +206,7 @@
             // 
             // button13
             // 
-            button13.Location = new Point(7, 27);
+            button13.Location = new Point(0, 66);
             button13.Name = "button13";
             button13.Size = new Size(93, 23);
             button13.TabIndex = 6;
@@ -209,9 +217,9 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
-            statusStrip1.Location = new Point(0, 608);
+            statusStrip1.Location = new Point(0, 839);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1244, 22);
+            statusStrip1.Size = new Size(1184, 22);
             statusStrip1.TabIndex = 7;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -221,7 +229,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fichierToolStripMenuItem, accessibilitéToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1244, 24);
+            menuStrip1.Size = new Size(1184, 24);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -267,7 +275,7 @@
             // 
             // button14
             // 
-            button14.Location = new Point(187, 27);
+            button14.Location = new Point(180, 66);
             button14.Name = "button14";
             button14.Size = new Size(75, 23);
             button14.TabIndex = 9;
@@ -306,11 +314,82 @@
             button17.UseVisualStyleBackColor = true;
             button17.Click += button17_Click;
             // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(3, 3);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(40, 19);
+            radioButton1.TabIndex = 13;
+            radioButton1.Text = "1:1";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(187, 3);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(46, 19);
+            radioButton2.TabIndex = 14;
+            radioButton2.Text = "16:9";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Checked = true;
+            radioButton3.Location = new Point(141, 3);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(40, 19);
+            radioButton3.TabIndex = 15;
+            radioButton3.Text = "4:3";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Location = new Point(95, 3);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(40, 19);
+            radioButton4.TabIndex = 16;
+            radioButton4.Text = "3:2";
+            radioButton4.UseVisualStyleBackColor = true;
+            radioButton4.CheckedChanged += radioButton4_CheckedChanged;
+            // 
+            // radioButton5
+            // 
+            radioButton5.AutoSize = true;
+            radioButton5.Location = new Point(49, 3);
+            radioButton5.Name = "radioButton5";
+            radioButton5.Size = new Size(40, 19);
+            radioButton5.TabIndex = 17;
+            radioButton5.Text = "2:1";
+            radioButton5.UseVisualStyleBackColor = true;
+            radioButton5.CheckedChanged += radioButton5_CheckedChanged;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.BackColor = Color.PeachPuff;
+            flowLayoutPanel1.Controls.Add(radioButton1);
+            flowLayoutPanel1.Controls.Add(radioButton5);
+            flowLayoutPanel1.Controls.Add(radioButton4);
+            flowLayoutPanel1.Controls.Add(radioButton3);
+            flowLayoutPanel1.Controls.Add(radioButton2);
+            flowLayoutPanel1.Location = new Point(4, 32);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(251, 28);
+            flowLayoutPanel1.TabIndex = 18;
+            // 
             // TP8
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 630);
+            BackColor = Color.AntiqueWhite;
+            ClientSize = new Size(1184, 861);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(button17);
             Controls.Add(button16);
             Controls.Add(button15);
@@ -330,6 +409,8 @@
             panel1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -352,15 +433,21 @@
         private Button button13;
         private StatusStrip statusStrip1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem fichierToolStripMenuItem;
         private ToolStripMenuItem accessibilitéToolStripMenuItem;
         private ToolStripMenuItem zoomToolStripMenuItem;
         private ToolStripMenuItem jspToolStripMenuItem;
         private Button button14;
         private Button button15;
-        private ToolStripMenuItem sauvegarderToolStripMenuItem;
-        private ToolStripMenuItem ouvrirToolStripMenuItem;
         private Button button16;
         private Button button17;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
+        private ToolStripMenuItem fichierToolStripMenuItem;
+        private ToolStripMenuItem sauvegarderToolStripMenuItem;
+        private ToolStripMenuItem ouvrirToolStripMenuItem;
+        private RadioButton radioButton3;
+        private RadioButton radioButton4;
+        private RadioButton radioButton5;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

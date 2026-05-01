@@ -45,14 +45,21 @@ namespace TP8
         {
             // taille et position de la zone de dessin
             // la taille de la zone de dessin correspond à la taille de la fenetre
-            this.Location = new Point(50,100);
-            this.Size = new Size(800, 450);
+            this.Location = new Point((1200-750)/2,(900-500)/2);
+            this.Size = new Size(750, 500);
             this.modele = modele;
             this.DoubleBuffered = true;
 
         }
 
+        // sert pour si on change la taille de notre zone de dessin
+        public void resize(int longueur, int largeur)
+        {
+            this.Size = new Size(longueur, largeur);
+        }
 
+        // on l'utilise quand on change la taille du dessin pour que ça se mette au milieu
+        public void replace(Point p) { this.Location = p; }
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
