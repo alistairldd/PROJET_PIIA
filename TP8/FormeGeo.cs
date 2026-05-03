@@ -13,6 +13,8 @@ namespace TP8
         private Color Couleur { get; set; }
         private int ZFactor { get; set; }
 
+        private bool fill;
+
         public Point Position
         {
             get => position;
@@ -41,11 +43,12 @@ namespace TP8
                 position.Y = value;
             }
         }
-        public FormeGeo(Point p, Color couleur, int zFactor)
+        public FormeGeo(Point p, Color couleur, int zFactor, bool fill)
         {
             this.Position = p;
             this.Couleur = couleur;
             this.ZFactor = zFactor;
+            this.fill = fill;
         }
 
         public abstract bool ContientPoint(Point p);
@@ -53,14 +56,19 @@ namespace TP8
         public abstract Color getCouleur();
         public abstract void setCouleur(Color couleur);
 
-        internal void setZFactor(int value)
+        public void setZFactor(int value)
         {
             this.ZFactor = value;
         }
 
-        internal int getZFactor()
+        public int getZFactor()
         {
             return ZFactor;
+        }
+
+        public bool getFill()
+        {
+            return fill;
         }
     }
 }

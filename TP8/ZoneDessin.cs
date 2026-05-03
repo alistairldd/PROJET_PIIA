@@ -41,6 +41,8 @@ namespace TP8
         private FormeGeo? formeRedimensionnee = null;
 
 
+        private bool fill = true;
+
         public ZoneDessin(Modele modele)
         {
             // taille et position de la zone de dessin
@@ -74,18 +76,36 @@ namespace TP8
                 FormeGeo forme = formesTriees[i];
                 Color color = forme.getCouleur();
 
+                bool fill = forme.getFill();
+
                 using var brush = new SolidBrush(color);
                 using var pen = new Pen(color, 2);
+                if (fill)
+                {
+                    if (forme is Rectangle rect)
+                    {
+                        e.Graphics.FillRectangle(brush, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
+                    }
+                    else if (forme is Disque disque)
+                    {
+                        e.Graphics.FillEllipse(brush, disque.Position.X - disque.getRayon(), disque.Position.Y - disque.getRayon(), disque.getRayon() * 2, disque.getRayon() * 2);
+                    }
 
-                if (forme is Rectangle rect)
-                {
-                    e.Graphics.FillRectangle(brush, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
                 }
-                else if (forme is Disque disque)
+
+                else
                 {
-                    e.Graphics.DrawEllipse(pen, disque.Position.X - disque.getRayon(), disque.Position.Y - disque.getRayon(), disque.getRayon() * 2, disque.getRayon() * 2);
+                    if (forme is Rectangle rect)
+                    {
+                        e.Graphics.DrawRectangle(pen, rect.Position.X, rect.Position.Y, rect.Largeur, rect.Hauteur);
+                    }
+                    else if (forme is Disque disque)
+                    {
+                        e.Graphics.DrawEllipse(pen, disque.Position.X - disque.getRayon(), disque.Position.Y - disque.getRayon(), disque.getRayon() * 2, disque.getRayon() * 2);
+                    }
                 }
-                else if (forme is Droite droite)
+
+                if (forme is Droite droite)
                 {
                     e.Graphics.DrawLine(pen, droite.PointDebut, droite.PointFin);
                 }
@@ -95,7 +115,6 @@ namespace TP8
                     if (pts.Length > 1)
                         e.Graphics.DrawLines(pen, pts);
                 }
-
                 else if (forme is Texte texte)
                 {
                     e.Graphics.DrawString(texte.Contenu, texte.Police, brush, texte.Position.X, texte.Position.Y);
@@ -138,23 +157,37 @@ namespace TP8
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            using var fill = new SolidBrush(Color.FromArgb(80, Couleur));
+            using var brush = new SolidBrush(Color.FromArgb(80, Couleur));
             using var pen = new Pen(Couleur, 2);
             using var border = new Pen(Color.FromArgb(180, Color.Black), 2);
             if (rectPreview is not null)
             {
-                
-                
                 var r = rectPreview;
-                e.Graphics.FillRectangle(fill, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
-                e.Graphics.DrawRectangle(border, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+                if (fill)
+                {
+                    e.Graphics.FillRectangle(brush, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+                    e.Graphics.DrawRectangle(border, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+                }
+                else
+                {
+                    e.Graphics.DrawRectangle(pen, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+
+                }
+
             }
 
             if (disquePreview is not null)
             {
                 var d = disquePreview;
-                e.Graphics.FillEllipse(fill, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
-                e.Graphics.DrawEllipse(border, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                if (fill)
+                {
+                    e.Graphics.FillEllipse(brush, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                    e.Graphics.DrawEllipse(border, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                }
+                else
+                {
+                    e.Graphics.DrawEllipse(pen, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                }
             }
 
             if (droitePreview is not null)
@@ -222,7 +255,7 @@ namespace TP8
             }
             else if (action == Action.dessiner)
             {
-                polylignePreview = new Dessin(e.Location, couleur, 0);
+                polylignePreview = new Dessin(e.Location, couleur, 0, fill);
                 isDragging = true;
                 Invalidate();
             }
@@ -285,7 +318,7 @@ namespace TP8
                 string texte = Microsoft.VisualBasic.Interaction.InputBox("Entrez votre texte :", "Texte", "");
                 if (!string.IsNullOrEmpty(texte))
                 {
-                    modele.ajouterForme(new Texte(e.Location, texte, couleur, 0));
+                    modele.ajouterForme(new Texte(e.Location, texte, couleur, 0, fill));
                     Invalidate();
                 }
             }
@@ -402,7 +435,7 @@ namespace TP8
                 int height = Math.Abs(e.Y - positionInitiale.Y);
 
                 rectPreview = (width > 0 && height > 0)
-                    ? new Rectangle(new Point(left, top), width, height, couleur, 0)
+                    ? new Rectangle(new Point(left, top), width, height, couleur, 0, fill)
                     : null;
 
                 Invalidate();
@@ -416,7 +449,7 @@ namespace TP8
                 int rayon = (int)Math.Sqrt(dx * dx + dy * dy);
 
                 disquePreview = (rayon > 0)
-                    ? new Disque(positionInitiale, rayon, couleur, 0)
+                    ? new Disque(positionInitiale, rayon, couleur, 0, fill)
                     : null;
 
                 Invalidate();
@@ -425,7 +458,7 @@ namespace TP8
 
             if (isDragging && action == Action.creerDroite)
             {
-                droitePreview = new Droite(positionInitiale, e.Location, couleur, 0);
+                droitePreview = new Droite(positionInitiale, e.Location, couleur, 0, fill);
                 Invalidate();
                 return;
             }
@@ -608,6 +641,9 @@ namespace TP8
             return g.MeasureString(t.Contenu, t.Police);
         }
 
-
+        internal void setFill(bool v)
+        {
+            this.fill = v;
+        }
     }
 }

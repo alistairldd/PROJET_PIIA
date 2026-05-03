@@ -97,14 +97,16 @@ namespace TP8
                         int ry = obj["y"]!.GetValue<int>();
                         int rl = obj["largeur"]!.GetValue<int>();
                         int rh = obj["hauteur"]!.GetValue<int>();
-                        forme = new Rectangle(new Point(rx, ry), rl, rh, couleur, 0);
+                        bool rfill = obj["fill"]!.GetValue<bool>();
+                        forme = new Rectangle(new Point(rx, ry), rl, rh, couleur, 0, rfill);
                         break;
 
                     case "Disque":
                         int dx = obj["x"]!.GetValue<int>();
                         int dy = obj["y"]!.GetValue<int>();
                         int dr = obj["rayon"]!.GetValue<int>();
-                        forme = new Disque(new Point(dx, dy), dr, couleur, 0);
+                        bool dfill = obj["fill"]!.GetValue<bool>();
+                        forme = new Disque(new Point(dx, dy), dr, couleur, 0, dfill);
                         break;
 
                     case "Droite":
@@ -112,15 +114,17 @@ namespace TP8
                         int y1 = obj["y1"]!.GetValue<int>();
                         int x2 = obj["x2"]!.GetValue<int>();
                         int y2 = obj["y2"]!.GetValue<int>();
-                        forme = new Droite(new Point(x1, y1), new Point(x2, y2), couleur, 0);
+                        bool drfill = obj["fill"]!.GetValue<bool>();
+                        forme = new Droite(new Point(x1, y1), new Point(x2, y2), couleur, 0, drfill);
                         break;
 
                     case "Dessin":
                         var points = obj["points"]!.AsArray();
                         var premierPt = points[0]!.AsObject();
+                        bool dessinfFill = obj["fill"]!.GetValue<bool>();
                         var dessin = new Dessin(
                             new Point(premierPt["x"]!.GetValue<int>(), premierPt["y"]!.GetValue<int>()),
-                            couleur, 0);
+                            couleur, 0, dessinfFill);
                         for (int i = 1; i < points.Count; i++)
                         {
                             var pt = points[i]!.AsObject();
@@ -132,9 +136,10 @@ namespace TP8
                     case "Texte":
                         int tx = obj["x"]!.GetValue<int>();
                         int ty = obj["y"]!.GetValue<int>();
+                        bool textFill = obj["fill"]!.GetValue<bool>();
                         string contenu = obj["contenu"]!.GetValue<string>();
                         float taille = obj["taille"]!.GetValue<float>();
-                        var texte = new Texte(new Point(tx, ty), contenu, couleur, 0);
+                        var texte = new Texte(new Point(tx, ty), contenu, couleur, 0, textFill);
                         texte.Police = new Font("Arial", taille);
                         forme = texte;
                         break;

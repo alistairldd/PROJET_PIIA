@@ -124,25 +124,21 @@ namespace TP8
 
     public class Rectangle : FormeGeo
     {
-        private double longueur;
+        private double largeur;
         private double hauteur;
         private Color Couleur;
 
         public int Largeur { get; set; }
         public int Hauteur { get; set; }
 
-        public Rectangle(Point point, int largeur, int hauteur, Color couleur, int zFactor) : base(point, couleur, zFactor)
+        public Rectangle(Point p, int largeur, int hauteur, Color couleur, int zFactor, bool fill) : base(p, couleur, zFactor, fill)
         {
-            Hauteur = hauteur;
             Largeur = largeur;
+            Hauteur = hauteur;
             Couleur = couleur;
         }
 
-        public Rectangle(Point p, double longueur, double hauteur, Color couleur, int zFactor) : base(p, couleur, zFactor)
-        {
-            this.longueur = longueur;
-            this.hauteur = hauteur;
-        }
+
 
         public override bool ContientPoint(Point p)
         {
@@ -161,6 +157,7 @@ namespace TP8
 
 
 
+
     }
 
     public class Disque : FormeGeo
@@ -168,7 +165,7 @@ namespace TP8
         private int Rayon { get; set; }
         private Color Couleur;
 
-        public Disque(Point centre, int rayon, Color couleur, int zFactor) : base(centre, couleur, zFactor)
+        public Disque(Point centre, int rayon, Color couleur, int zFactor, bool fill) : base(centre, couleur, zFactor, fill)
         {
             Rayon = rayon;
             Couleur = couleur;
@@ -227,7 +224,7 @@ namespace TP8
 
         public Color Couleur { get; set; }
 
-        public Droite(Point pointDebut, Point pointFin, Color couleur, int zFactor) : base(pointDebut, couleur, zFactor)
+        public Droite(Point pointDebut, Point pointFin, Color couleur, int zFactor, bool fill) : base(pointDebut, couleur, zFactor, fill)
         {
             PointDebut = pointDebut;
             PointFin = pointFin;
@@ -276,7 +273,7 @@ namespace TP8
         private List<Point> Points { get; } = new List<Point>();
         private Color Couleur;
 
-        public Dessin(Point start, Color couleur, int zFactor) : base(start, couleur, zFactor)
+        public Dessin(Point start, Color couleur, int zFactor, bool fill) : base(start, couleur, zFactor, fill)
         {
             Points.Add(start);
             Couleur = couleur;
@@ -330,7 +327,7 @@ namespace TP8
         public Font Police { get; set; }
         private Color Couleur;
 
-        public Texte(Point position, string contenu, Color couleur, int zFactor) : base(position, couleur, zFactor)
+        public Texte(Point position, string contenu, Color couleur, int zFactor, bool fill) : base(position, couleur, zFactor, fill)
         {
             Contenu = contenu;
             Police = new Font("Arial", 14);
