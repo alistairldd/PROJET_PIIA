@@ -48,6 +48,13 @@
             fichierToolStripMenuItem = new ToolStripMenuItem();
             sauvegarderToolStripMenuItem = new ToolStripMenuItem();
             ouvrirToolStripMenuItem = new ToolStripMenuItem();
+            exporterToolStripMenuItem = new ToolStripMenuItem();
+            ratioToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripMenuItem();
+            toolStripMenuItem6 = new ToolStripMenuItem();
+            toolStripMenuItem4 = new ToolStripMenuItem();
+            toolStripMenuItem5 = new ToolStripMenuItem();
             accessibilitéToolStripMenuItem = new ToolStripMenuItem();
             zoomToolStripMenuItem = new ToolStripMenuItem();
             jspToolStripMenuItem = new ToolStripMenuItem();
@@ -55,31 +62,20 @@
             button15 = new Button();
             button16 = new Button();
             button17 = new Button();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
-            radioButton4 = new RadioButton();
-            radioButton5 = new RadioButton();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             radioButton6 = new RadioButton();
-            groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
-            radioButton7 = new RadioButton();
-            button18 = new Button();
             button19 = new Button();
+            radioButton7 = new RadioButton();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(141, 168);
-            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Location = new Point(111, 32);
             button1.Name = "button1";
-            button1.Size = new Size(107, 38);
+            button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
             button1.Text = "Deplacer";
             button1.UseVisualStyleBackColor = true;
@@ -87,10 +83,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(233, 37);
-            button2.Margin = new Padding(4, 5, 4, 5);
+            button2.Location = new Point(163, 22);
             button2.Name = "button2";
-            button2.Size = new Size(107, 38);
+            button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
             button2.Text = "Rectangle";
             button2.UseVisualStyleBackColor = true;
@@ -98,10 +93,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(349, 37);
-            button3.Margin = new Padding(4, 5, 4, 5);
+            button3.Location = new Point(244, 22);
             button3.Name = "button3";
-            button3.Size = new Size(107, 38);
+            button3.Size = new Size(75, 23);
             button3.TabIndex = 2;
             button3.Text = "Disque";
             button3.UseVisualStyleBackColor = true;
@@ -109,10 +103,9 @@
             // 
             // button4
             // 
-            button4.Location = new Point(464, 37);
-            button4.Margin = new Padding(4, 5, 4, 5);
+            button4.Location = new Point(325, 22);
             button4.Name = "button4";
-            button4.Size = new Size(107, 38);
+            button4.Size = new Size(75, 23);
             button4.TabIndex = 3;
             button4.Text = "Droite";
             button4.UseVisualStyleBackColor = true;
@@ -120,10 +113,9 @@
             // 
             // button5
             // 
-            button5.Location = new Point(117, 37);
-            button5.Margin = new Padding(4, 5, 4, 5);
+            button5.Location = new Point(82, 22);
             button5.Name = "button5";
-            button5.Size = new Size(107, 38);
+            button5.Size = new Size(75, 23);
             button5.TabIndex = 4;
             button5.Text = "Dessin";
             button5.UseVisualStyleBackColor = true;
@@ -139,19 +131,17 @@
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button10);
             panel1.Controls.Add(button7);
-            panel1.Location = new Point(467, 53);
-            panel1.Margin = new Padding(4, 5, 4, 5);
+            panel1.Location = new Point(275, 32);
             panel1.Name = "panel1";
-            panel1.Size = new Size(353, 55);
+            panel1.Size = new Size(247, 33);
             panel1.TabIndex = 5;
             // 
             // button11
             // 
             button11.BackColor = Color.White;
-            button11.Location = new Point(103, 0);
-            button11.Margin = new Padding(4, 5, 4, 5);
+            button11.Location = new Point(72, 0);
             button11.Name = "button11";
-            button11.Size = new Size(43, 50);
+            button11.Size = new Size(30, 30);
             button11.TabIndex = 7;
             button11.UseVisualStyleBackColor = false;
             button11.Click += button11_Click;
@@ -159,10 +149,9 @@
             // button12
             // 
             button12.BackColor = Color.Black;
-            button12.Location = new Point(4, 0);
-            button12.Margin = new Padding(4, 5, 4, 5);
+            button12.Location = new Point(3, 0);
             button12.Name = "button12";
-            button12.Size = new Size(43, 50);
+            button12.Size = new Size(30, 30);
             button12.TabIndex = 8;
             button12.UseVisualStyleBackColor = false;
             button12.Click += button12_Click;
@@ -172,10 +161,9 @@
             button9.BackColor = Color.Transparent;
             button9.BackgroundImage = (Image)resources.GetObject("button9.BackgroundImage");
             button9.BackgroundImageLayout = ImageLayout.Stretch;
-            button9.Location = new Point(306, 0);
-            button9.Margin = new Padding(4, 5, 4, 5);
+            button9.Location = new Point(214, 0);
             button9.Name = "button9";
-            button9.Size = new Size(43, 50);
+            button9.Size = new Size(30, 30);
             button9.TabIndex = 3;
             button9.UseVisualStyleBackColor = false;
             button9.Click += button9_Click;
@@ -184,10 +172,9 @@
             // 
             button8.BackColor = Color.Navy;
             button8.ForeColor = SystemColors.ActiveBorder;
-            button8.Location = new Point(254, 0);
-            button8.Margin = new Padding(4, 5, 4, 5);
+            button8.Location = new Point(178, 0);
             button8.Name = "button8";
-            button8.Size = new Size(43, 50);
+            button8.Size = new Size(30, 30);
             button8.TabIndex = 2;
             button8.UseVisualStyleBackColor = false;
             button8.Click += button8_Click;
@@ -195,10 +182,9 @@
             // button6
             // 
             button6.BackColor = Color.FromArgb(192, 0, 0);
-            button6.Location = new Point(154, 0);
-            button6.Margin = new Padding(4, 5, 4, 5);
+            button6.Location = new Point(108, 0);
             button6.Name = "button6";
-            button6.Size = new Size(43, 50);
+            button6.Size = new Size(30, 30);
             button6.TabIndex = 0;
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
@@ -206,10 +192,9 @@
             // button10
             // 
             button10.BackColor = Color.Gray;
-            button10.Location = new Point(51, 0);
-            button10.Margin = new Padding(4, 5, 4, 5);
+            button10.Location = new Point(36, 0);
             button10.Name = "button10";
-            button10.Size = new Size(43, 50);
+            button10.Size = new Size(30, 30);
             button10.TabIndex = 6;
             button10.UseVisualStyleBackColor = false;
             button10.Click += button10_Click;
@@ -217,20 +202,18 @@
             // button7
             // 
             button7.BackColor = Color.Green;
-            button7.Location = new Point(206, 0);
-            button7.Margin = new Padding(4, 5, 4, 5);
+            button7.Location = new Point(144, 0);
             button7.Name = "button7";
-            button7.Size = new Size(43, 50);
+            button7.Size = new Size(30, 30);
             button7.TabIndex = 1;
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
             // button13
             // 
-            button13.Location = new Point(0, 168);
-            button13.Margin = new Padding(4, 5, 4, 5);
+            button13.Location = new Point(12, 32);
             button13.Name = "button13";
-            button13.Size = new Size(133, 38);
+            button13.Size = new Size(93, 23);
             button13.TabIndex = 6;
             button13.Text = "Selectionner";
             button13.UseVisualStyleBackColor = true;
@@ -239,10 +222,9 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
-            statusStrip1.Location = new Point(0, 1028);
+            statusStrip1.Location = new Point(0, 608);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Padding = new Padding(1, 0, 20, 0);
-            statusStrip1.Size = new Size(1691, 22);
+            statusStrip1.Size = new Size(1184, 22);
             statusStrip1.TabIndex = 7;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -252,57 +234,104 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fichierToolStripMenuItem, accessibilitéToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(9, 3, 0, 3);
-            menuStrip1.Size = new Size(1691, 35);
+            menuStrip1.Size = new Size(1184, 24);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
             // fichierToolStripMenuItem
             // 
-            fichierToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sauvegarderToolStripMenuItem, ouvrirToolStripMenuItem });
+            fichierToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sauvegarderToolStripMenuItem, ouvrirToolStripMenuItem, exporterToolStripMenuItem, ratioToolStripMenuItem });
             fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            fichierToolStripMenuItem.Size = new Size(78, 29);
+            fichierToolStripMenuItem.Size = new Size(54, 20);
             fichierToolStripMenuItem.Text = "Fichier";
             fichierToolStripMenuItem.Click += fichierToolStripMenuItem_Click;
             // 
             // sauvegarderToolStripMenuItem
             // 
             sauvegarderToolStripMenuItem.Name = "sauvegarderToolStripMenuItem";
-            sauvegarderToolStripMenuItem.Size = new Size(213, 34);
+            sauvegarderToolStripMenuItem.Size = new Size(180, 22);
             sauvegarderToolStripMenuItem.Text = "Sauvegarder";
             // 
             // ouvrirToolStripMenuItem
             // 
             ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            ouvrirToolStripMenuItem.Size = new Size(213, 34);
+            ouvrirToolStripMenuItem.Size = new Size(180, 22);
             ouvrirToolStripMenuItem.Text = "Ouvrir";
+            // 
+            // exporterToolStripMenuItem
+            // 
+            exporterToolStripMenuItem.Name = "exporterToolStripMenuItem";
+            exporterToolStripMenuItem.Size = new Size(180, 22);
+            exporterToolStripMenuItem.Text = "Exporter";
+            exporterToolStripMenuItem.Click += exporterToolStripMenuItem_Click;
+            // 
+            // ratioToolStripMenuItem
+            // 
+            ratioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem6, toolStripMenuItem4, toolStripMenuItem5 });
+            ratioToolStripMenuItem.Name = "ratioToolStripMenuItem";
+            ratioToolStripMenuItem.Size = new Size(180, 22);
+            ratioToolStripMenuItem.Text = "Ratio";
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(95, 22);
+            toolStripMenuItem2.Text = "1:1";
+            toolStripMenuItem2.Click += toolStripMenuItem2_Click;
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(95, 22);
+            toolStripMenuItem3.Text = "2:1";
+            toolStripMenuItem3.Click += toolStripMenuItem3_Click;
+            // 
+            // toolStripMenuItem6
+            // 
+            toolStripMenuItem6.Name = "toolStripMenuItem6";
+            toolStripMenuItem6.Size = new Size(95, 22);
+            toolStripMenuItem6.Text = "3:2";
+            toolStripMenuItem6.Click += toolStripMenuItem6_Click;
+            // 
+            // toolStripMenuItem4
+            // 
+            toolStripMenuItem4.Name = "toolStripMenuItem4";
+            toolStripMenuItem4.Size = new Size(95, 22);
+            toolStripMenuItem4.Text = "4:3";
+            toolStripMenuItem4.Click += toolStripMenuItem4_Click;
+            // 
+            // toolStripMenuItem5
+            // 
+            toolStripMenuItem5.Name = "toolStripMenuItem5";
+            toolStripMenuItem5.Size = new Size(95, 22);
+            toolStripMenuItem5.Text = "16:9";
+            toolStripMenuItem5.Click += toolStripMenuItem5_Click;
             // 
             // accessibilitéToolStripMenuItem
             // 
             accessibilitéToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zoomToolStripMenuItem, jspToolStripMenuItem });
             accessibilitéToolStripMenuItem.Name = "accessibilitéToolStripMenuItem";
-            accessibilitéToolStripMenuItem.Size = new Size(123, 29);
+            accessibilitéToolStripMenuItem.Size = new Size(84, 20);
             accessibilitéToolStripMenuItem.Text = "Accessibilité";
             accessibilitéToolStripMenuItem.Click += accessibilitéToolStripMenuItem_Click;
             // 
             // zoomToolStripMenuItem
             // 
             zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            zoomToolStripMenuItem.Size = new Size(162, 34);
+            zoomToolStripMenuItem.Size = new Size(106, 22);
             zoomToolStripMenuItem.Text = "Zoom";
             // 
             // jspToolStripMenuItem
             // 
             jspToolStripMenuItem.Name = "jspToolStripMenuItem";
-            jspToolStripMenuItem.Size = new Size(162, 34);
+            jspToolStripMenuItem.Size = new Size(106, 22);
             jspToolStripMenuItem.Text = "jsp";
             // 
             // button14
             // 
-            button14.Location = new Point(257, 168);
-            button14.Margin = new Padding(4, 5, 4, 5);
+            button14.Location = new Point(192, 32);
             button14.Name = "button14";
-            button14.Size = new Size(107, 38);
+            button14.Size = new Size(75, 23);
             button14.TabIndex = 9;
             button14.Text = "Supprimer";
             button14.UseVisualStyleBackColor = true;
@@ -310,9 +339,10 @@
             // 
             // button15
             // 
-            button15.Location = new Point(117, 83);
+            button15.Location = new Point(82, 50);
+            button15.Margin = new Padding(2);
             button15.Name = "button15";
-            button15.Size = new Size(111, 33);
+            button15.Size = new Size(78, 20);
             button15.TabIndex = 10;
             button15.Text = "Texte";
             button15.UseVisualStyleBackColor = true;
@@ -320,10 +350,9 @@
             // 
             // button16
             // 
-            button16.Location = new Point(349, 83);
-            button16.Margin = new Padding(4, 5, 4, 5);
+            button16.Location = new Point(244, 50);
             button16.Name = "button16";
-            button16.Size = new Size(107, 38);
+            button16.Size = new Size(75, 23);
             button16.TabIndex = 11;
             button16.Text = "Avant";
             button16.UseVisualStyleBackColor = true;
@@ -331,116 +360,26 @@
             // 
             // button17
             // 
-            button17.Location = new Point(464, 82);
-            button17.Margin = new Padding(4, 5, 4, 5);
+            button17.Location = new Point(325, 49);
             button17.Name = "button17";
-            button17.Size = new Size(107, 38);
+            button17.Size = new Size(75, 23);
             button17.TabIndex = 12;
             button17.Text = "Arrière";
             button17.UseVisualStyleBackColor = true;
             button17.Click += button17_Click;
             // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(4, 5);
-            radioButton1.Margin = new Padding(4, 5, 4, 5);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(61, 29);
-            radioButton1.TabIndex = 13;
-            radioButton1.Text = "1:1";
-            radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(280, 5);
-            radioButton2.Margin = new Padding(4, 5, 4, 5);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(71, 29);
-            radioButton2.TabIndex = 14;
-            radioButton2.Text = "16:9";
-            radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
-            // 
-            // radioButton3
-            // 
-            radioButton3.AutoSize = true;
-            radioButton3.Checked = true;
-            radioButton3.Location = new Point(211, 5);
-            radioButton3.Margin = new Padding(4, 5, 4, 5);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(61, 29);
-            radioButton3.TabIndex = 15;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "4:3";
-            radioButton3.UseVisualStyleBackColor = true;
-            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
-            // 
-            // radioButton4
-            // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(142, 5);
-            radioButton4.Margin = new Padding(4, 5, 4, 5);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(61, 29);
-            radioButton4.TabIndex = 16;
-            radioButton4.Text = "3:2";
-            radioButton4.UseVisualStyleBackColor = true;
-            radioButton4.CheckedChanged += radioButton4_CheckedChanged;
-            // 
-            // radioButton5
-            // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(73, 5);
-            radioButton5.Margin = new Padding(4, 5, 4, 5);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(61, 29);
-            radioButton5.TabIndex = 17;
-            radioButton5.Text = "2:1";
-            radioButton5.UseVisualStyleBackColor = true;
-            radioButton5.CheckedChanged += radioButton5_CheckedChanged;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.BackColor = Color.PeachPuff;
-            flowLayoutPanel1.Controls.Add(radioButton1);
-            flowLayoutPanel1.Controls.Add(radioButton5);
-            flowLayoutPanel1.Controls.Add(radioButton4);
-            flowLayoutPanel1.Controls.Add(radioButton3);
-            flowLayoutPanel1.Controls.Add(radioButton2);
-            flowLayoutPanel1.Location = new Point(9, 37);
-            flowLayoutPanel1.Margin = new Padding(4, 5, 4, 5);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(359, 47);
-            flowLayoutPanel1.TabIndex = 18;
-            // 
             // radioButton6
             // 
             radioButton6.AutoSize = true;
             radioButton6.Checked = true;
-            radioButton6.Location = new Point(9, 37);
-            radioButton6.Margin = new Padding(4, 5, 4, 5);
+            radioButton6.Location = new Point(6, 22);
             radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(74, 29);
+            radioButton6.Size = new Size(51, 19);
             radioButton6.TabIndex = 19;
             radioButton6.TabStop = true;
             radioButton6.Text = "Plein";
             radioButton6.UseVisualStyleBackColor = true;
             radioButton6.CheckedChanged += radioButton6_CheckedChanged;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(flowLayoutPanel1);
-            groupBox1.Location = new Point(17, 53);
-            groupBox1.Margin = new Padding(4, 5, 4, 5);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4, 5, 4, 5);
-            groupBox1.Size = new Size(404, 105);
-            groupBox1.TabIndex = 20;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Ratio";
             // 
             // groupBox2
             // 
@@ -454,55 +393,41 @@
             groupBox2.Controls.Add(button15);
             groupBox2.Controls.Add(button3);
             groupBox2.Controls.Add(button4);
-            groupBox2.Location = new Point(829, 53);
-            groupBox2.Margin = new Padding(4, 5, 4, 5);
+            groupBox2.Location = new Point(633, 32);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(4, 5, 4, 5);
-            groupBox2.Size = new Size(587, 153);
+            groupBox2.Size = new Size(411, 92);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             // 
-            // radioButton7
-            // 
-            radioButton7.AutoSize = true;
-            radioButton7.Location = new Point(9, 78);
-            radioButton7.Margin = new Padding(4, 5, 4, 5);
-            radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(81, 29);
-            radioButton7.TabIndex = 20;
-            radioButton7.Text = "Creux";
-            radioButton7.UseVisualStyleBackColor = true;
-            radioButton7.CheckedChanged += radioButton7_CheckedChanged;
-            // 
-            // button18
-            // 
-            button18.Location = new Point(1178, 214);
-            button18.Name = "button18";
-            button18.Size = new Size(112, 34);
-            button18.TabIndex = 22;
-            button18.Text = "Exporter";
-            button18.UseVisualStyleBackColor = true;
-            button18.Click += button18_Click;
-            // 
             // button19
             // 
-            button19.Location = new Point(234, 87);
+            button19.Location = new Point(164, 52);
+            button19.Margin = new Padding(2);
             button19.Name = "button19";
-            button19.Size = new Size(112, 34);
+            button19.Size = new Size(78, 20);
             button19.TabIndex = 21;
             button19.Text = "Dupliquer";
             button19.UseVisualStyleBackColor = true;
             button19.Click += button19_Click;
             // 
+            // radioButton7
+            // 
+            radioButton7.AutoSize = true;
+            radioButton7.Location = new Point(6, 47);
+            radioButton7.Name = "radioButton7";
+            radioButton7.Size = new Size(55, 19);
+            radioButton7.TabIndex = 20;
+            radioButton7.Text = "Creux";
+            radioButton7.UseVisualStyleBackColor = true;
+            radioButton7.CheckedChanged += radioButton7_CheckedChanged;
+            // 
             // TP8
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
-            ClientSize = new Size(1691, 1050);
-            Controls.Add(button18);
+            ClientSize = new Size(1184, 630);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             Controls.Add(button14);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
@@ -510,15 +435,11 @@
             Controls.Add(panel1);
             Controls.Add(button1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(4, 5, 4, 5);
             Name = "TP8";
             Text = "Form1";
             panel1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
-            groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
@@ -550,20 +471,19 @@
         private Button button15;
         private Button button16;
         private Button button17;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
         private ToolStripMenuItem fichierToolStripMenuItem;
         private ToolStripMenuItem sauvegarderToolStripMenuItem;
         private ToolStripMenuItem ouvrirToolStripMenuItem;
-        private RadioButton radioButton3;
-        private RadioButton radioButton4;
-        private RadioButton radioButton5;
-        private FlowLayoutPanel flowLayoutPanel1;
         private RadioButton radioButton6;
-        private GroupBox groupBox1;
         private GroupBox groupBox2;
         private RadioButton radioButton7;
-        private Button button18;
         private Button button19;
+        private ToolStripMenuItem ratioToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem toolStripMenuItem4;
+        private ToolStripMenuItem toolStripMenuItem5;
+        private ToolStripMenuItem toolStripMenuItem6;
+        private ToolStripMenuItem exporterToolStripMenuItem;
     }
 }

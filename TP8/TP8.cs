@@ -189,43 +189,6 @@ namespace TP8
             // y'a rien mais je le mets sinon ça marche pas
         }
 
-        // les radio button qui servent à resize la zone de dessin
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            zoneDessin.resize(450, 450);
-            zoneDessin.replace(new Point((longueur - 450) / 2, (largeur - 450) / 2));
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            zoneDessin.resize(800, 450);
-            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 450) / 2));
-            zoneDessin.Invalidate();
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            zoneDessin.resize(800, 600);
-            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 600) / 2));
-
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            zoneDessin.resize(750, 500);
-            zoneDessin.replace(new Point((longueur - 750) / 2, (largeur - 500) / 2));
-
-
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-            zoneDessin.resize(800, 400);
-            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 400) / 2));
-
-        }
 
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
@@ -237,7 +200,46 @@ namespace TP8
             zoneDessin.setFill(false);
         }
 
-        private void button18_Click(object sender, EventArgs e)
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            modele.dupliquerSelection();
+            modele.setAction(Action.deplacer);
+            zoneDessin.Invalidate();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        { // 1:1
+            zoneDessin.resize(450, 450);
+            zoneDessin.replace(new Point((longueur - 450) / 2, (largeur - 450) / 2));
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        { // 2:1
+            zoneDessin.resize(800, 400);
+            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 400) / 2));
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        { // 3:2
+            zoneDessin.resize(750, 500);
+            zoneDessin.replace(new Point((longueur - 750) / 2, (largeur - 500) / 2));
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        { // 4:3
+            zoneDessin.resize(800, 600);
+            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 600) / 2));
+
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        { // 16:9
+            zoneDessin.resize(800, 450);
+            zoneDessin.replace(new Point((longueur - 800) / 2, (largeur - 450) / 2));
+        }
+
+        private void exporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var dialog = new SaveFileDialog();
             dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp";
@@ -258,12 +260,6 @@ namespace TP8
                 bitmap.Save(dialog.FileName, format);
                 MessageBox.Show("Export réussi !");
             }
-        }
-
-        private void button19_Click(object sender, EventArgs e)
-        {
-            modele.dupliquerSelection();
-            zoneDessin.Invalidate();
         }
     }
 }
