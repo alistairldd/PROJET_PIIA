@@ -24,6 +24,7 @@ namespace TP8
                     obj["y"] = r.Position.Y;
                     obj["largeur"] = r.Largeur;
                     obj["hauteur"] = r.Hauteur;
+                    obj["fill"] = r.getFill();
                 }
                 else if (f is Disque d)
                 {
@@ -31,6 +32,7 @@ namespace TP8
                     obj["x"] = d.Position.X;
                     obj["y"] = d.Position.Y;
                     obj["rayon"] = d.getRayon();
+                    obj["fill"] = d.getFill();
                 }
                 else if (f is Droite dr)
                 {
@@ -39,6 +41,7 @@ namespace TP8
                     obj["y1"] = dr.PointDebut.Y;
                     obj["x2"] = dr.PointFin.X;
                     obj["y2"] = dr.PointFin.Y;
+                    obj["fill"] = dr.getFill();
                 }
                 else if (f is Dessin des)
                 {
@@ -52,6 +55,7 @@ namespace TP8
                         points.Add(pt);
                     }
                     obj["points"] = points;
+                    obj["fill"] = des.getFill();
                 }
                 else if (f is Texte t)
                 {
@@ -60,6 +64,7 @@ namespace TP8
                     obj["y"] = t.Position.Y;
                     obj["contenu"] = t.Contenu;
                     obj["taille"] = t.Police.Size;
+                    obj["fill"] = t.getFill();
                 }
 
                 tableau.Add(obj);
