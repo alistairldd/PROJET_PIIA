@@ -10,6 +10,7 @@ namespace TP8
         private int longueur = 1200;
         private int largeur = 900;
 
+        private Button _outilActif = null;
 
 
         public TP8()
@@ -32,36 +33,75 @@ namespace TP8
             this.Size = new Size(longueur, largeur);
         }
 
+        private void SelectionnerOutil(Button bouton)
+        { // pour mettre en surbrillance le bouton de l'outil sélectionné
+            if (_outilActif != null)
+            {
+                _outilActif.BackColor = SystemColors.Control;
+                _outilActif.FlatAppearance.BorderColor = SystemColors.ControlDark;
+            }
+
+            _outilActif = bouton;
+            bouton.BackColor = Color.LightSteelBlue;
+            bouton.FlatAppearance.BorderColor = Color.SteelBlue;
+        }
+
+        private void SelectionnerCouleur(Button bouton)
+        { // pour mettre en surbrillance le bouton de la couleur sélectionnée
+            if (_outilActif != null)
+            {
+                _outilActif.FlatAppearance.BorderColor = Color.Black;
+            }
+
+            _outilActif = bouton;
+            bouton.FlatAppearance.BorderColor = Color.LightSteelBlue;
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        { // deplacer objet
             modele.setAction(Action.deplacer);
+            SelectionnerOutil(button1);
+            zoneDessin.Invalidate();
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        { // rectangle
             modele.setAction(Action.creerRectangle);
+            SelectionnerOutil(button2);
+            zoneDessin.Invalidate();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        { // disque
             modele.setAction(Action.creerDisque);
+            SelectionnerOutil(button3);
+            zoneDessin.Invalidate();
+
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {
+        { // droite
             modele.setAction(Action.creerDroite);
+            SelectionnerOutil(button4);
+            zoneDessin.Invalidate();
+
         }
 
         private void button5_Click(object sender, EventArgs e)
-        {
+        { // pinceau
             modele.setAction(Action.dessiner);
+            SelectionnerOutil(button5);
+            zoneDessin.Invalidate();
+
         }
 
         private void button6_Click(object sender, EventArgs e) // Rouge
-        {
+        { 
             zoneDessin.Couleur = Color.Red;
             modele.setCouleurSelection(Color.Red);
+            SelectionnerCouleur(button6);
             zoneDessin.Invalidate();
         }
 
@@ -69,6 +109,7 @@ namespace TP8
         {
             zoneDessin.Couleur = Color.Green;
             modele.setCouleurSelection(Color.Green);
+            SelectionnerCouleur(button7);
             zoneDessin.Invalidate();
 
         }
@@ -77,6 +118,7 @@ namespace TP8
         {
             zoneDessin.Couleur = Color.Blue;
             modele.setCouleurSelection(Color.Blue);
+            SelectionnerCouleur(button8);
             zoneDessin.Invalidate();
 
         }
@@ -93,7 +135,7 @@ namespace TP8
                 zoneDessin.Couleur = MyDialog.Color;
                 modele.setCouleurSelection(MyDialog.Color);
             }
-
+            SelectionnerCouleur(button9);
             zoneDessin.Invalidate();
 
         }
@@ -102,6 +144,7 @@ namespace TP8
         {
             zoneDessin.Couleur = Color.Gray;
             modele.setCouleurSelection(Color.Gray);
+            SelectionnerCouleur(button10);
             zoneDessin.Invalidate();
 
 
@@ -111,6 +154,7 @@ namespace TP8
         {
             zoneDessin.Couleur = Color.Black;
             modele.setCouleurSelection(Color.Black);
+            SelectionnerCouleur(button12);
             zoneDessin.Invalidate();
 
         }
@@ -119,12 +163,16 @@ namespace TP8
         {
             zoneDessin.Couleur = Color.White;
             modele.setCouleurSelection(Color.White);
+            SelectionnerCouleur(button11);
             zoneDessin.Invalidate();
         }
 
         private void button13_Click(object sender, EventArgs e)
-        {
+        { // selection
             modele.setAction(Action.selectionner);
+            SelectionnerOutil(button13);
+            zoneDessin.Invalidate();
+
         }
 
 
@@ -133,23 +181,29 @@ namespace TP8
         {
             modele.supprimer();
             zoneDessin.Invalidate();
+            SelectionnerOutil(button14);
             zoneDessin.Update(); // on met ça pour que ça affiche la suppression direct et pas une fois qu'on a cliqué autre part
         }
 
         private void button15_Click(object sender, EventArgs e)
-        {
+        { // texte
             modele.setAction(Action.creerTexte);
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-            modele.setZFactorSelectionAvant();
+            SelectionnerOutil(button15);
             zoneDessin.Invalidate();
         }
 
+        private void button16_Click(object sender, EventArgs e)
+        { // z avant
+            modele.setZFactorSelectionAvant();
+            SelectionnerOutil(button16);
+            zoneDessin.Invalidate();
+
+        }
+
         private void button17_Click(object sender, EventArgs e)
-        {
+        { // z arrière
             modele.setZFactorSelectionArriere();
+            SelectionnerOutil(button17);
             zoneDessin.Invalidate();
         }
 
@@ -205,6 +259,7 @@ namespace TP8
         {
             modele.dupliquerSelection();
             modele.setAction(Action.deplacer);
+            SelectionnerOutil(button19);
             zoneDessin.Invalidate();
         }
 

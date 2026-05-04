@@ -73,9 +73,10 @@
             // 
             // button1
             // 
+            button1.FlatStyle = FlatStyle.Flat;
             button1.Location = new Point(111, 32);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(75, 30);
             button1.TabIndex = 0;
             button1.Text = "Deplacer";
             button1.UseVisualStyleBackColor = true;
@@ -83,9 +84,10 @@
             // 
             // button2
             // 
+            button2.FlatStyle = FlatStyle.Flat;
             button2.Location = new Point(163, 22);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(79, 25);
             button2.TabIndex = 1;
             button2.Text = "Rectangle";
             button2.UseVisualStyleBackColor = true;
@@ -93,9 +95,10 @@
             // 
             // button3
             // 
+            button3.FlatStyle = FlatStyle.Flat;
             button3.Location = new Point(244, 22);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(75, 25);
             button3.TabIndex = 2;
             button3.Text = "Disque";
             button3.UseVisualStyleBackColor = true;
@@ -103,9 +106,10 @@
             // 
             // button4
             // 
+            button4.FlatStyle = FlatStyle.Flat;
             button4.Location = new Point(325, 22);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(75, 25);
             button4.TabIndex = 3;
             button4.Text = "Droite";
             button4.UseVisualStyleBackColor = true;
@@ -113,9 +117,10 @@
             // 
             // button5
             // 
+            button5.FlatStyle = FlatStyle.Flat;
             button5.Location = new Point(82, 22);
             button5.Name = "button5";
-            button5.Size = new Size(75, 23);
+            button5.Size = new Size(78, 25);
             button5.TabIndex = 4;
             button5.Text = "Dessin";
             button5.UseVisualStyleBackColor = true;
@@ -133,12 +138,14 @@
             panel1.Controls.Add(button7);
             panel1.Location = new Point(275, 32);
             panel1.Name = "panel1";
-            panel1.Size = new Size(247, 33);
+            panel1.Size = new Size(245, 41);
             panel1.TabIndex = 5;
             // 
             // button11
             // 
             button11.BackColor = Color.White;
+            button11.FlatAppearance.BorderSize = 2;
+            button11.FlatStyle = FlatStyle.Flat;
             button11.Location = new Point(72, 0);
             button11.Name = "button11";
             button11.Size = new Size(30, 30);
@@ -149,6 +156,8 @@
             // button12
             // 
             button12.BackColor = Color.Black;
+            button12.FlatAppearance.BorderSize = 2;
+            button12.FlatStyle = FlatStyle.Flat;
             button12.Location = new Point(3, 0);
             button12.Name = "button12";
             button12.Size = new Size(30, 30);
@@ -161,9 +170,11 @@
             button9.BackColor = Color.Transparent;
             button9.BackgroundImage = (Image)resources.GetObject("button9.BackgroundImage");
             button9.BackgroundImageLayout = ImageLayout.Stretch;
+            button9.FlatAppearance.BorderSize = 2;
+            button9.FlatStyle = FlatStyle.Flat;
             button9.Location = new Point(214, 0);
             button9.Name = "button9";
-            button9.Size = new Size(30, 30);
+            button9.Size = new Size(29, 30);
             button9.TabIndex = 3;
             button9.UseVisualStyleBackColor = false;
             button9.Click += button9_Click;
@@ -171,10 +182,12 @@
             // button8
             // 
             button8.BackColor = Color.Navy;
-            button8.ForeColor = SystemColors.ActiveBorder;
+            button8.FlatAppearance.BorderSize = 2;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.ForeColor = SystemColors.ControlText;
             button8.Location = new Point(178, 0);
             button8.Name = "button8";
-            button8.Size = new Size(30, 30);
+            button8.Size = new Size(29, 30);
             button8.TabIndex = 2;
             button8.UseVisualStyleBackColor = false;
             button8.Click += button8_Click;
@@ -182,9 +195,11 @@
             // button6
             // 
             button6.BackColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatStyle = FlatStyle.Flat;
             button6.Location = new Point(108, 0);
             button6.Name = "button6";
-            button6.Size = new Size(30, 30);
+            button6.Size = new Size(29, 30);
             button6.TabIndex = 0;
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
@@ -192,6 +207,8 @@
             // button10
             // 
             button10.BackColor = Color.Gray;
+            button10.FlatAppearance.BorderSize = 2;
+            button10.FlatStyle = FlatStyle.Flat;
             button10.Location = new Point(36, 0);
             button10.Name = "button10";
             button10.Size = new Size(30, 30);
@@ -202,18 +219,21 @@
             // button7
             // 
             button7.BackColor = Color.Green;
+            button7.FlatAppearance.BorderSize = 2;
+            button7.FlatStyle = FlatStyle.Flat;
             button7.Location = new Point(144, 0);
             button7.Name = "button7";
-            button7.Size = new Size(30, 30);
+            button7.Size = new Size(29, 30);
             button7.TabIndex = 1;
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
             // button13
             // 
+            button13.FlatStyle = FlatStyle.Flat;
             button13.Location = new Point(12, 32);
             button13.Name = "button13";
-            button13.Size = new Size(93, 23);
+            button13.Size = new Size(93, 30);
             button13.TabIndex = 6;
             button13.Text = "Selectionner";
             button13.UseVisualStyleBackColor = true;
@@ -249,19 +269,19 @@
             // sauvegarderToolStripMenuItem
             // 
             sauvegarderToolStripMenuItem.Name = "sauvegarderToolStripMenuItem";
-            sauvegarderToolStripMenuItem.Size = new Size(180, 22);
+            sauvegarderToolStripMenuItem.Size = new Size(139, 22);
             sauvegarderToolStripMenuItem.Text = "Sauvegarder";
             // 
             // ouvrirToolStripMenuItem
             // 
             ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            ouvrirToolStripMenuItem.Size = new Size(180, 22);
+            ouvrirToolStripMenuItem.Size = new Size(139, 22);
             ouvrirToolStripMenuItem.Text = "Ouvrir";
             // 
             // exporterToolStripMenuItem
             // 
             exporterToolStripMenuItem.Name = "exporterToolStripMenuItem";
-            exporterToolStripMenuItem.Size = new Size(180, 22);
+            exporterToolStripMenuItem.Size = new Size(139, 22);
             exporterToolStripMenuItem.Text = "Exporter";
             exporterToolStripMenuItem.Click += exporterToolStripMenuItem_Click;
             // 
@@ -269,7 +289,7 @@
             // 
             ratioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem6, toolStripMenuItem4, toolStripMenuItem5 });
             ratioToolStripMenuItem.Name = "ratioToolStripMenuItem";
-            ratioToolStripMenuItem.Size = new Size(180, 22);
+            ratioToolStripMenuItem.Size = new Size(139, 22);
             ratioToolStripMenuItem.Text = "Ratio";
             // 
             // toolStripMenuItem2
@@ -329,9 +349,10 @@
             // 
             // button14
             // 
+            button14.FlatStyle = FlatStyle.Flat;
             button14.Location = new Point(192, 32);
             button14.Name = "button14";
-            button14.Size = new Size(75, 23);
+            button14.Size = new Size(75, 30);
             button14.TabIndex = 9;
             button14.Text = "Supprimer";
             button14.UseVisualStyleBackColor = true;
@@ -339,10 +360,11 @@
             // 
             // button15
             // 
+            button15.FlatStyle = FlatStyle.Flat;
             button15.Location = new Point(82, 50);
             button15.Margin = new Padding(2);
             button15.Name = "button15";
-            button15.Size = new Size(78, 20);
+            button15.Size = new Size(78, 25);
             button15.TabIndex = 10;
             button15.Text = "Texte";
             button15.UseVisualStyleBackColor = true;
@@ -350,9 +372,10 @@
             // 
             // button16
             // 
+            button16.FlatStyle = FlatStyle.Flat;
             button16.Location = new Point(244, 50);
             button16.Name = "button16";
-            button16.Size = new Size(75, 23);
+            button16.Size = new Size(75, 25);
             button16.TabIndex = 11;
             button16.Text = "Avant";
             button16.UseVisualStyleBackColor = true;
@@ -360,9 +383,10 @@
             // 
             // button17
             // 
-            button17.Location = new Point(325, 49);
+            button17.FlatStyle = FlatStyle.Flat;
+            button17.Location = new Point(325, 50);
             button17.Name = "button17";
-            button17.Size = new Size(75, 23);
+            button17.Size = new Size(75, 25);
             button17.TabIndex = 12;
             button17.Text = "Arrière";
             button17.UseVisualStyleBackColor = true;
@@ -372,9 +396,10 @@
             // 
             radioButton6.AutoSize = true;
             radioButton6.Checked = true;
+            radioButton6.FlatStyle = FlatStyle.Flat;
             radioButton6.Location = new Point(6, 22);
             radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(51, 19);
+            radioButton6.Size = new Size(50, 19);
             radioButton6.TabIndex = 19;
             radioButton6.TabStop = true;
             radioButton6.Text = "Plein";
@@ -401,10 +426,11 @@
             // 
             // button19
             // 
-            button19.Location = new Point(164, 52);
+            button19.FlatStyle = FlatStyle.Flat;
+            button19.Location = new Point(164, 50);
             button19.Margin = new Padding(2);
             button19.Name = "button19";
-            button19.Size = new Size(78, 20);
+            button19.Size = new Size(78, 25);
             button19.TabIndex = 21;
             button19.Text = "Dupliquer";
             button19.UseVisualStyleBackColor = true;
@@ -413,9 +439,10 @@
             // radioButton7
             // 
             radioButton7.AutoSize = true;
+            radioButton7.FlatStyle = FlatStyle.Flat;
             radioButton7.Location = new Point(6, 47);
             radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(55, 19);
+            radioButton7.Size = new Size(54, 19);
             radioButton7.TabIndex = 20;
             radioButton7.Text = "Creux";
             radioButton7.UseVisualStyleBackColor = true;

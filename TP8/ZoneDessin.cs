@@ -67,6 +67,7 @@ namespace TP8
         {
             // On trie les formes par indice de profondeur pour dessiner tt ça
             var formesTriees = modele.getFormes().OrderBy(f => f.getZFactor()).ToList();
+            var action = modele.getAction();
 
 
 
@@ -122,33 +123,36 @@ namespace TP8
 
             }
         
-            
-
-            // Surligner les formes sélectionnées
-            foreach (var f in modele.getFormesSelectionnees())
+            if (action == Action.selectionner)
             {
-                using var pen = new Pen(Color.Yellow, 2);
-                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                if (f is Rectangle r)
-                    e.Graphics.DrawRectangle(pen, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
-                else if (f is Disque d)
-                    e.Graphics.DrawEllipse(pen, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
-                else if (f is Droite dr)
-                    e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
-                else if (f is Dessin dessin)
+                // Surligner les formes sélectionnées
+                foreach (var f in modele.getFormesSelectionnees())
                 {
-                    var pts = dessin.getPoints().ToArray();
-                    if (pts.Length > 1)
-                        e.Graphics.DrawLines(pen, pts);
-                }
+                    using var pen = new Pen(Color.Yellow, 2);
+                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    if (f is Rectangle r)
+                        e.Graphics.DrawRectangle(pen, r.Position.X, r.Position.Y, r.Largeur, r.Hauteur);
+                    else if (f is Disque d)
+                        e.Graphics.DrawEllipse(pen, d.Position.X - d.getRayon(), d.Position.Y - d.getRayon(), d.getRayon() * 2, d.getRayon() * 2);
+                    else if (f is Droite dr)
+                        e.Graphics.DrawLine(pen, dr.PointDebut, dr.PointFin);
+                    else if (f is Dessin dessin)
+                    {
+                        var pts = dessin.getPoints().ToArray();
+                        if (pts.Length > 1)
+                            e.Graphics.DrawLines(pen, pts);
+                    }
 
-                else if (f is Texte t)
-                {
-                    var taille = MesureTexte(t);
-                    e.Graphics.DrawRectangle(pen, t.Position.X, t.Position.Y, taille.Width, taille.Height);
-                }
+                    else if (f is Texte t)
+                    {
+                        var taille = MesureTexte(t);
+                        e.Graphics.DrawRectangle(pen, t.Position.X, t.Position.Y, taille.Width, taille.Height);
+                    }
 
+                }
             }
+
+            
 
 
         }
