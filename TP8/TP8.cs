@@ -236,5 +236,34 @@ namespace TP8
         {
             zoneDessin.setFill(false);
         }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            using var dialog = new SaveFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp";
+            dialog.DefaultExt = "png";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var bitmap = new Bitmap(zoneDessin.Width, zoneDessin.Height);
+                zoneDessin.DrawToBitmap(bitmap, new System.Drawing.Rectangle(0, 0, zoneDessin.Width, zoneDessin.Height));
+
+                string ext = Path.GetExtension(dialog.FileName).ToLower();
+                var format = ext switch
+                {
+                    ".jpg" => System.Drawing.Imaging.ImageFormat.Jpeg,
+                    ".bmp" => System.Drawing.Imaging.ImageFormat.Bmp,
+                    _ => System.Drawing.Imaging.ImageFormat.Png
+                };
+
+                bitmap.Save(dialog.FileName, format);
+                MessageBox.Show("Export réussi !");
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            modele.dupliquerSelection();
+            zoneDessin.Invalidate();
+        }
     }
 }
