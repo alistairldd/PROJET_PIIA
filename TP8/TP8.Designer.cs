@@ -38,9 +38,9 @@
             button11 = new Button();
             button12 = new Button();
             button9 = new Button();
-            button8 = new Button();
-            button6 = new Button();
             button10 = new Button();
+            button6 = new Button();
+            button8 = new Button();
             button7 = new Button();
             button13 = new Button();
             statusStrip1 = new StatusStrip();
@@ -63,82 +63,87 @@
             button16 = new Button();
             button17 = new Button();
             radioButton6 = new RadioButton();
-            groupBox2 = new GroupBox();
             button19 = new Button();
             radioButton7 = new RadioButton();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(111, 32);
+            button1.Location = new Point(58, 32);
             button1.Name = "button1";
-            button1.Size = new Size(75, 30);
+            button1.Size = new Size(40, 40);
             button1.TabIndex = 0;
-            button1.Text = "Deplacer";
+            button1.Text = "*";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // button2
             // 
+            button2.BackgroundImage = (Image)resources.GetObject("button2.BackgroundImage");
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(163, 22);
+            button2.Location = new Point(226, 32);
             button2.Name = "button2";
-            button2.Size = new Size(79, 25);
+            button2.Size = new Size(40, 40);
             button2.TabIndex = 1;
-            button2.Text = "Rectangle";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // button3
             // 
+            button3.BackgroundImage = (Image)resources.GetObject("button3.BackgroundImage");
+            button3.BackgroundImageLayout = ImageLayout.Stretch;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(244, 22);
+            button3.Location = new Point(272, 32);
             button3.Name = "button3";
-            button3.Size = new Size(75, 25);
+            button3.Size = new Size(40, 40);
             button3.TabIndex = 2;
-            button3.Text = "Disque";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
             // button4
             // 
+            button4.BackgroundImage = (Image)resources.GetObject("button4.BackgroundImage");
+            button4.BackgroundImageLayout = ImageLayout.Stretch;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(325, 22);
+            button4.Location = new Point(318, 32);
             button4.Name = "button4";
-            button4.Size = new Size(75, 25);
+            button4.Size = new Size(40, 40);
             button4.TabIndex = 3;
-            button4.Text = "Droite";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
             // button5
             // 
+            button5.BackColor = Color.Transparent;
+            button5.BackgroundImage = (Image)resources.GetObject("button5.BackgroundImage");
+            button5.BackgroundImageLayout = ImageLayout.Stretch;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Location = new Point(82, 22);
+            button5.Location = new Point(180, 32);
             button5.Name = "button5";
-            button5.Size = new Size(78, 25);
+            button5.Size = new Size(40, 40);
             button5.TabIndex = 4;
-            button5.Text = "Dessin";
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.PeachPuff;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(button11);
             panel1.Controls.Add(button12);
             panel1.Controls.Add(button9);
-            panel1.Controls.Add(button8);
-            panel1.Controls.Add(button6);
             panel1.Controls.Add(button10);
+            panel1.Controls.Add(button6);
+            panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
-            panel1.Location = new Point(275, 32);
+            panel1.Location = new Point(588, 40);
             panel1.Name = "panel1";
-            panel1.Size = new Size(245, 41);
+            panel1.Size = new Size(322, 44);
             panel1.TabIndex = 5;
             // 
             // button11
@@ -146,9 +151,9 @@
             button11.BackColor = Color.White;
             button11.FlatAppearance.BorderSize = 2;
             button11.FlatStyle = FlatStyle.Flat;
-            button11.Location = new Point(72, 0);
+            button11.Location = new Point(49, 0);
             button11.Name = "button11";
-            button11.Size = new Size(30, 30);
+            button11.Size = new Size(40, 40);
             button11.TabIndex = 7;
             button11.UseVisualStyleBackColor = false;
             button11.Click += button11_Click;
@@ -160,7 +165,7 @@
             button12.FlatStyle = FlatStyle.Flat;
             button12.Location = new Point(3, 0);
             button12.Name = "button12";
-            button12.Size = new Size(30, 30);
+            button12.Size = new Size(40, 40);
             button12.TabIndex = 8;
             button12.UseVisualStyleBackColor = false;
             button12.Click += button12_Click;
@@ -172,12 +177,36 @@
             button9.BackgroundImageLayout = ImageLayout.Stretch;
             button9.FlatAppearance.BorderSize = 2;
             button9.FlatStyle = FlatStyle.Flat;
-            button9.Location = new Point(214, 0);
+            button9.Location = new Point(279, 0);
             button9.Name = "button9";
-            button9.Size = new Size(29, 30);
+            button9.Size = new Size(40, 40);
             button9.TabIndex = 3;
             button9.UseVisualStyleBackColor = false;
             button9.Click += button9_Click;
+            // 
+            // button10
+            // 
+            button10.BackColor = Color.Gray;
+            button10.FlatAppearance.BorderSize = 2;
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.Location = new Point(95, 0);
+            button10.Name = "button10";
+            button10.Size = new Size(40, 40);
+            button10.TabIndex = 6;
+            button10.UseVisualStyleBackColor = false;
+            button10.Click += button10_Click;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(141, 0);
+            button6.Name = "button6";
+            button6.Size = new Size(40, 40);
+            button6.TabIndex = 0;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // button8
             // 
@@ -185,57 +214,34 @@
             button8.FlatAppearance.BorderSize = 2;
             button8.FlatStyle = FlatStyle.Flat;
             button8.ForeColor = SystemColors.ControlText;
-            button8.Location = new Point(178, 0);
+            button8.Location = new Point(233, 0);
             button8.Name = "button8";
-            button8.Size = new Size(29, 30);
+            button8.Size = new Size(40, 40);
             button8.TabIndex = 2;
             button8.UseVisualStyleBackColor = false;
             button8.Click += button8_Click;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(192, 0, 0);
-            button6.FlatAppearance.BorderSize = 2;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Location = new Point(108, 0);
-            button6.Name = "button6";
-            button6.Size = new Size(29, 30);
-            button6.TabIndex = 0;
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
-            // 
-            // button10
-            // 
-            button10.BackColor = Color.Gray;
-            button10.FlatAppearance.BorderSize = 2;
-            button10.FlatStyle = FlatStyle.Flat;
-            button10.Location = new Point(36, 0);
-            button10.Name = "button10";
-            button10.Size = new Size(30, 30);
-            button10.TabIndex = 6;
-            button10.UseVisualStyleBackColor = false;
-            button10.Click += button10_Click;
             // 
             // button7
             // 
             button7.BackColor = Color.Green;
             button7.FlatAppearance.BorderSize = 2;
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(144, 0);
+            button7.Location = new Point(187, 0);
             button7.Name = "button7";
-            button7.Size = new Size(29, 30);
+            button7.Size = new Size(40, 40);
             button7.TabIndex = 1;
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
             // button13
             // 
+            button13.BackgroundImage = (Image)resources.GetObject("button13.BackgroundImage");
+            button13.BackgroundImageLayout = ImageLayout.Stretch;
             button13.FlatStyle = FlatStyle.Flat;
             button13.Location = new Point(12, 32);
             button13.Name = "button13";
-            button13.Size = new Size(93, 30);
+            button13.Size = new Size(40, 40);
             button13.TabIndex = 6;
-            button13.Text = "Selectionner";
             button13.UseVisualStyleBackColor = true;
             button13.Click += button13_Click;
             // 
@@ -349,90 +355,80 @@
             // 
             // button14
             // 
+            button14.BackgroundImage = (Image)resources.GetObject("button14.BackgroundImage");
+            button14.BackgroundImageLayout = ImageLayout.Stretch;
             button14.FlatStyle = FlatStyle.Flat;
-            button14.Location = new Point(192, 32);
+            button14.Location = new Point(104, 32);
             button14.Name = "button14";
-            button14.Size = new Size(75, 30);
+            button14.Size = new Size(40, 40);
             button14.TabIndex = 9;
-            button14.Text = "Supprimer";
             button14.UseVisualStyleBackColor = true;
             button14.Click += button14_Click;
             // 
             // button15
             // 
+            button15.BackgroundImage = (Image)resources.GetObject("button15.BackgroundImage");
+            button15.BackgroundImageLayout = ImageLayout.Stretch;
             button15.FlatStyle = FlatStyle.Flat;
-            button15.Location = new Point(82, 50);
+            button15.Location = new Point(363, 32);
             button15.Margin = new Padding(2);
             button15.Name = "button15";
-            button15.Size = new Size(78, 25);
+            button15.Size = new Size(40, 40);
             button15.TabIndex = 10;
-            button15.Text = "Texte";
             button15.UseVisualStyleBackColor = true;
             button15.Click += button15_Click;
             // 
             // button16
             // 
+            button16.BackgroundImage = (Image)resources.GetObject("button16.BackgroundImage");
+            button16.BackgroundImageLayout = ImageLayout.Stretch;
             button16.FlatStyle = FlatStyle.Flat;
-            button16.Location = new Point(244, 50);
+            button16.Location = new Point(930, 40);
             button16.Name = "button16";
-            button16.Size = new Size(75, 25);
+            button16.Size = new Size(40, 40);
             button16.TabIndex = 11;
-            button16.Text = "Avant";
             button16.UseVisualStyleBackColor = true;
             button16.Click += button16_Click;
             // 
             // button17
             // 
-            button17.FlatStyle = FlatStyle.Flat;
-            button17.Location = new Point(325, 50);
+            button17.BackgroundImage = (Image)resources.GetObject("button17.BackgroundImage");
+            button17.BackgroundImageLayout = ImageLayout.Stretch;
+            button17.FlatStyle = FlatStyle.Popup;
+            button17.Location = new Point(976, 40);
             button17.Name = "button17";
-            button17.Size = new Size(75, 25);
+            button17.Size = new Size(40, 40);
             button17.TabIndex = 12;
-            button17.Text = "Arrière";
             button17.UseVisualStyleBackColor = true;
             button17.Click += button17_Click;
             // 
             // radioButton6
             // 
             radioButton6.AutoSize = true;
+            radioButton6.BackgroundImageLayout = ImageLayout.Stretch;
             radioButton6.Checked = true;
             radioButton6.FlatStyle = FlatStyle.Flat;
-            radioButton6.Location = new Point(6, 22);
+            radioButton6.Font = new Font("Segoe UI", 15F);
+            radioButton6.ImageAlign = ContentAlignment.MiddleRight;
+            radioButton6.Location = new Point(418, 40);
             radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(50, 19);
+            radioButton6.Size = new Size(71, 32);
             radioButton6.TabIndex = 19;
             radioButton6.TabStop = true;
             radioButton6.Text = "Plein";
             radioButton6.UseVisualStyleBackColor = true;
             radioButton6.CheckedChanged += radioButton6_CheckedChanged;
             // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(button19);
-            groupBox2.Controls.Add(radioButton7);
-            groupBox2.Controls.Add(radioButton6);
-            groupBox2.Controls.Add(button17);
-            groupBox2.Controls.Add(button5);
-            groupBox2.Controls.Add(button16);
-            groupBox2.Controls.Add(button2);
-            groupBox2.Controls.Add(button15);
-            groupBox2.Controls.Add(button3);
-            groupBox2.Controls.Add(button4);
-            groupBox2.Location = new Point(633, 32);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(411, 92);
-            groupBox2.TabIndex = 21;
-            groupBox2.TabStop = false;
-            // 
             // button19
             // 
+            button19.BackgroundImage = (Image)resources.GetObject("button19.BackgroundImage");
+            button19.BackgroundImageLayout = ImageLayout.Stretch;
             button19.FlatStyle = FlatStyle.Flat;
-            button19.Location = new Point(164, 50);
+            button19.Location = new Point(1021, 40);
             button19.Margin = new Padding(2);
             button19.Name = "button19";
-            button19.Size = new Size(78, 25);
+            button19.Size = new Size(40, 40);
             button19.TabIndex = 21;
-            button19.Text = "Dupliquer";
             button19.UseVisualStyleBackColor = true;
             button19.Click += button19_Click;
             // 
@@ -440,9 +436,10 @@
             // 
             radioButton7.AutoSize = true;
             radioButton7.FlatStyle = FlatStyle.Flat;
-            radioButton7.Location = new Point(6, 47);
+            radioButton7.Font = new Font("Segoe UI", 15F);
+            radioButton7.Location = new Point(495, 40);
             radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(54, 19);
+            radioButton7.Size = new Size(78, 32);
             radioButton7.TabIndex = 20;
             radioButton7.Text = "Creux";
             radioButton7.UseVisualStyleBackColor = true;
@@ -452,12 +449,21 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.AntiqueWhite;
+            BackColor = Color.Silver;
             ClientSize = new Size(1184, 630);
-            Controls.Add(groupBox2);
+            Controls.Add(button19);
+            Controls.Add(button17);
+            Controls.Add(button16);
+            Controls.Add(radioButton7);
             Controls.Add(button14);
+            Controls.Add(button15);
+            Controls.Add(radioButton6);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
+            Controls.Add(button5);
+            Controls.Add(button2);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(button13);
             Controls.Add(panel1);
             Controls.Add(button1);
@@ -467,8 +473,6 @@
             panel1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -502,7 +506,6 @@
         private ToolStripMenuItem sauvegarderToolStripMenuItem;
         private ToolStripMenuItem ouvrirToolStripMenuItem;
         private RadioButton radioButton6;
-        private GroupBox groupBox2;
         private RadioButton radioButton7;
         private Button button19;
         private ToolStripMenuItem ratioToolStripMenuItem;

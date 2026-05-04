@@ -37,12 +37,10 @@ namespace TP8
         { // pour mettre en surbrillance le bouton de l'outil sélectionné
             if (_outilActif != null)
             {
-                _outilActif.BackColor = SystemColors.Control;
-                _outilActif.FlatAppearance.BorderColor = SystemColors.ControlDark;
+                _outilActif.FlatAppearance.BorderColor = Color.Black;
             }
 
             _outilActif = bouton;
-            bouton.BackColor = Color.LightSteelBlue;
             bouton.FlatAppearance.BorderColor = Color.SteelBlue;
         }
 
