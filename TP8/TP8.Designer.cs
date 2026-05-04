@@ -55,9 +55,6 @@
             toolStripMenuItem6 = new ToolStripMenuItem();
             toolStripMenuItem4 = new ToolStripMenuItem();
             toolStripMenuItem5 = new ToolStripMenuItem();
-            accessibilitéToolStripMenuItem = new ToolStripMenuItem();
-            zoomToolStripMenuItem = new ToolStripMenuItem();
-            jspToolStripMenuItem = new ToolStripMenuItem();
             button14 = new Button();
             button15 = new Button();
             button16 = new Button();
@@ -257,7 +254,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fichierToolStripMenuItem, accessibilitéToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fichierToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1184, 24);
@@ -332,26 +329,6 @@
             toolStripMenuItem5.Size = new Size(95, 22);
             toolStripMenuItem5.Text = "16:9";
             toolStripMenuItem5.Click += toolStripMenuItem5_Click;
-            // 
-            // accessibilitéToolStripMenuItem
-            // 
-            accessibilitéToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zoomToolStripMenuItem, jspToolStripMenuItem });
-            accessibilitéToolStripMenuItem.Name = "accessibilitéToolStripMenuItem";
-            accessibilitéToolStripMenuItem.Size = new Size(84, 20);
-            accessibilitéToolStripMenuItem.Text = "Accessibilité";
-            accessibilitéToolStripMenuItem.Click += accessibilitéToolStripMenuItem_Click;
-            // 
-            // zoomToolStripMenuItem
-            // 
-            zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            zoomToolStripMenuItem.Size = new Size(106, 22);
-            zoomToolStripMenuItem.Text = "Zoom";
-            // 
-            // jspToolStripMenuItem
-            // 
-            jspToolStripMenuItem.Name = "jspToolStripMenuItem";
-            jspToolStripMenuItem.Size = new Size(106, 22);
-            jspToolStripMenuItem.Text = "jsp";
             // 
             // button14
             // 
@@ -495,9 +472,6 @@
         private Button button13;
         private StatusStrip statusStrip1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem accessibilitéToolStripMenuItem;
-        private ToolStripMenuItem zoomToolStripMenuItem;
-        private ToolStripMenuItem jspToolStripMenuItem;
         private Button button14;
         private Button button15;
         private Button button16;
