@@ -123,7 +123,7 @@ namespace TP8
 
             }
         
-            if (action == Action.selectionner)
+            if (action == Action.selectionner || action == Action.deplacer)
             {
                 // Surligner les formes sélectionnées
                 foreach (var f in modele.getFormesSelectionnees())
