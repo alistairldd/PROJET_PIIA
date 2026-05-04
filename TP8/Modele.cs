@@ -104,21 +104,21 @@ namespace TP8
             {
                 FormeGeo copie;
                 if (f is Rectangle r)
-                    copie = new Rectangle(new Point(r.Position.X + 10, r.Position.Y + 10), r.Largeur, r.Hauteur, r.getCouleur(), 0, false);
+                    copie = new Rectangle(new Point(r.Position.X + 10, r.Position.Y + 10), r.Largeur, r.Hauteur, r.getCouleur(), 0, f.getFill());
                 else if (f is Disque d)
-                    copie = new Disque(new Point(d.Position.X + 10, d.Position.Y + 10), d.getRayon(), d.getCouleur(), 0, false);
+                    copie = new Disque(new Point(d.Position.X + 10, d.Position.Y + 10), d.getRayon(), d.getCouleur(), 0, f.getFill());
                 else if (f is Droite dr)
-                    copie = new Droite(new Point(dr.PointDebut.X + 10, dr.PointDebut.Y + 10), new Point(dr.PointFin.X + 10, dr.PointFin.Y + 10), dr.getCouleur(), 0, false);
+                    copie = new Droite(new Point(dr.PointDebut.X + 10, dr.PointDebut.Y + 10), new Point(dr.PointFin.X + 10, dr.PointFin.Y + 10), dr.getCouleur(), 0, f.getFill());
                 else if (f is Texte t)
                 {
-                    var copieTexte = new Texte(new Point(t.Position.X + 10, t.Position.Y + 10), t.Contenu, t.getCouleur(), 0, false);
+                    var copieTexte = new Texte(new Point(t.Position.X + 10, t.Position.Y + 10), t.Contenu, t.getCouleur(), 0, f.getFill());
                     copieTexte.Police = new Font(t.Police.FontFamily, t.Police.Size);
                     copie = copieTexte;
                 }
                 else if (f is Dessin des)
                 {
                     var premierPt = des.getPoints()[0];
-                    var copieDessin = new Dessin(new Point(premierPt.X + 10, premierPt.Y + 10), des.getCouleur(), 0, false);
+                    var copieDessin = new Dessin(new Point(premierPt.X + 10, premierPt.Y + 10), des.getCouleur(), 0, f.getFill());
                     for (int i = 1; i < des.getPoints().Count; i++)
                         copieDessin.AjouterPoint(new Point(des.getPoints()[i].X + 10, des.getPoints()[i].Y + 10));
                     copie = copieDessin;

@@ -117,7 +117,7 @@
             // 
             // button5
             // 
-            button5.BackColor = Color.Transparent;
+            button5.BackColor = Color.Silver;
             button5.BackgroundImage = (Image)resources.GetObject("button5.BackgroundImage");
             button5.BackgroundImageLayout = ImageLayout.Stretch;
             button5.FlatStyle = FlatStyle.Flat;
